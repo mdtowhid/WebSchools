@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebSchools.Models.AdminCategory>
+
+@{
+    ViewBag.Title = "Admin Categories";
+    Layout = "~/Areas/SpArea/Views/Shared/_SpArea.cshtml";
+}
+
+<div class="sp_right fix">
+    @Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+<h2>Admin Categories</h2>
+
+<p>
+    @Html.ActionLink("Add Category", "CreateAdminCategory")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActiveStatus)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiveStatus)
+            </td>
+            <td>
+                <a href="~/spArea/adminManager/EditAdminCategory/@item.Id"><i class="fa fa-edit"></i></a>
+                @*@Html.ActionLink("", "EditAdminCategory", new { id = item.Id }, new {@class="fade fa-edit"})*@
+                @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+            </td>
+        </tr>
+    }
+
+</table>
+</div>

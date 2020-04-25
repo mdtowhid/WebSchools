@@ -1,0 +1,83 @@
+﻿
+<div class="lang_box" id="phpId">
+    <div class="float_left desc">
+        <div class="desc_top">
+            <div class="lang_icon">
+                <h1>পিএইচপি ৭</h1>
+            </div>
+            <p>
+                পিএইচপি (PHP) একটি প্রোগ্রামিং ভাষা। এটি মূলত সার্ভার-সাইড স্ক্রিপ্টিং-এর জন্য ব্যবহৃত হয়। 
+                পিএইচপি হচ্ছে একটি স্ক্রিপ্টিং ভাষা যা 
+                মূলতঃ ডাইনামিক ওয়েব পেইজ তৈরির জন্য ডিজাইন করা হয়েছে। 
+                এটা কমান্ড লাইন ইন্টারফেস 
+                ক্ষমতাকে অন্তর্ভুক্ত করেছে।
+            </p>
+        </div>
+        <div class="desc_bottom">
+            <div class="lang_syntax_header">
+                <h4>পিএইচপি প্রোগ্রামিং ভাষার সিনটেক্স</h4>
+            </div>
+            <div class="tutorial_example ex_box">
+                
+                <div class="php_index_page_codes">
+                    <code>< ?php</code>
+                    <br />
+                    <code style="padding-left: 20px">echo</code> "Hello World!" ;
+
+
+                    <br />
+                    <span class="php_var">
+                        $number1
+                    </span> = 10;
+                    <br />
+                    <span class="php_var">
+                        $number2
+                    </span> = 20;
+
+                    <br />
+                    <span class="php_var">
+                        $result = $number1 + $number2;
+                    </span>
+
+                    <br />
+                    <code style="padding-left: 20px">echo </code>
+                    <span class="php_var">
+                        $result;
+                    </span>
+                    <br />
+                    <code> ?></code>
+                </div>
+
+            </div>
+        </div>
+        <a href="~/php/phpTutorial/php/" class="next_page">পিএইচপি শিখুন<span class="raquo">&raquo;</span></a>
+    </div>
+    <div class="float_right demo">
+
+        <div class="php_db_conn_ex">
+            <h3 style="padding-left: 10px">পিএইচপি ডাটাবেস সংযোগ</h3>
+            <span class="php_var">$serverName</span> = "localhost";
+            <br />
+            <span class="php_var">$userName</span> = "username";
+            <br />
+
+            <span class="php_var">$password</span> = "password";
+            <br />
+
+            <div class="php_comment"><i>// সংযোগ তৈরি করুন</i></div>
+            <span class="php_var">$conn</span> = <code>new</code> mysqli($servername, $username, $password);
+        
+            <div class="php_comment"><i>// সংযোগ চেক করুন</i></div>
+        
+            <div style="padding-left: 20px">
+                <code>if</code> ($conn->connect_error) {
+                <br />
+                <code style="padding-left: 20px;">die</code>("Connection failed: " . $conn->connect_error);
+                <br />
+                }
+                <br />
+                <code>echo</code> "Connected successfully";
+            </div>
+        </div>
+    </div>
+</div>

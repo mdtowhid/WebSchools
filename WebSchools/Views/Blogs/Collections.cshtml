@@ -1,0 +1,61 @@
+﻿@using WebSchools.Models
+@using WebSchools.Models.BlogVm
+
+@{
+    ViewBag.Title = "Collections";
+    Layout = "~/Views/Shared/_blog.cshtml";
+}
+
+
+<div class="container_wrapper fix">
+    <div class="container_fixed fix blogContents">
+        <span onclick="goBack()" class="prev_bc_page">&larr;</span>
+        @if (ViewBag.EmptyBlogs != null)
+        {
+            <p class="jumbotron">
+                @Html.Raw(ViewBag.EmptyBlogs)
+            </p>
+        }
+        else
+        {
+            <div class="fix blogs_width">
+                @foreach (BlogContent bc in ViewBag.BlogsByCategoryId)
+                {
+                    <div class="blogs">
+                        <div class="blog_images">
+                            <img src="~/UpImages/@Url.Content(bc.ImageUrl)" />
+                        </div>
+                        <div class="blog_contents">
+                            <p><b>Category: @bc.BlogCategory.BlogCategoryName</b></p>
+                            <h2>@bc.BlogHeading</h2>
+                            <p style="opacity: .6;">Posted By: @bc.PostedBy </p>
+                            <h5>Date: <span>@bc.Date</span></h5>
+
+                            <p>@bc.BlogDesc.Substring(0, 100)</p>
+                            <a href="~/blogs/continueReading/@bc.Id">Continue Reading &raquo;</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        <div class="float_right fix bloggers">
+            <h3>Bloggers</h3>
+            @foreach (Registration r in ViewBag.Bloggers)
+            {
+                <div class="blooger_box">
+                    <h4>@r.UserName</h4>
+                    <div class="blogger_img_box">
+                        <img src="~/Images/RegImg/@Url.Content(r.ImageUrl)" />
+                    </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

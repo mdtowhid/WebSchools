@@ -1,0 +1,120 @@
+﻿@using WebSchools.Models
+@model WebSchools.Models.Css.CssTutorial
+
+@{
+    ViewBag.Title = "Edit Css Tutorial";
+    Layout = "~/Areas/Admin/Views/Shared/_adminCss.cshtml";
+}
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+<div class="form_head">
+    <h2>Edit Css Tutorial</h2>
+    <h3>Slug = @Html.Raw(Model.Slug)</h3>
+</div>
+<div class="well-sm form-group status">
+    @if (ViewBag.Error != null)
+    {
+        <div class="text-danger">@ViewBag.Error</div>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <div class="text-success">@ViewBag.Success</div>
+    }
+</div>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @*@Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })*@
+            <select name="Slug" class="form-control" hidden>
+                <option value="none">Select Slug</option>
+                @foreach (CssIndex ci in ViewBag.CssIndices)
+                {
+                    <option value="@ci.Slug">@ci.Slug</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CssPropertyHeadingName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(model => model.CssPropertyHeadingName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CssPropertyHeadingName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CssProperties, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(model => model.CssProperties, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CssProperties, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Heading, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.Heading, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Explanation, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(model => model.Explanation, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Explanation, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Example, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(model => model.Example, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Example, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <input type="text" name="Sort" value="123" hidden />
+    <input type="text" name="ActiveStatus" value="false" hidden />
+    <input type="text" name="AwesomeClass" value="awesomeClass" hidden />
+    <input type="text" name="AdminId" value="@Session["CssAdminId"]" hidden />
+    <input type="text" name="Date" value="@System.DateTime.Now" hidden />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

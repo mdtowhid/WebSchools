@@ -1,0 +1,33 @@
+﻿@using WebSchools.Models
+@{
+    Registration reg = ViewBag.LogedInUser;
+    string imgUrl = reg.ImageUrl;
+}
+
+<div class="admin_top_header fix">
+    <div class="float_left left fix admin_top_right_menu" style="width: 250px; ">
+        <h3 class="toggling_menu_btn">&equiv;</h3>
+    </div>
+    <div class="float_right fix admin_top_left_menu">
+        <img src="~/Images/RegImg/@Url.Content(imgUrl)" />
+    </div>
+</div>
+
+<div class="menu_item_box">
+    <a href="#">Log Out</a>
+    <a href="~/blogs/home/">Webschool Blog</a>
+    <a href="~/wsAllTutorials/upComing/">Up Coming tutorials</a>
+    <a href="~/priorExperiences/create/">Prior Experience</a>
+    <a href="~/wsAllTutorials/tutorials/">All Tutorials <span class="hidden_right_arrow">&raquo;</span></a>
+</div>
+
+
+<script>
+    $(window).click(function (e) {
+        if ($(e.target).prop("nodeName") == 'IMG' && $(e.target).parent().prop("className") == "float_right fix admin_top_left_menu") {
+            $('.menu_item_box').toggleClass('active');
+        } else {
+            $('.menu_item_box').removeClass('active');
+        }
+    })
+</script>

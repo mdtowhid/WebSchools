@@ -1,0 +1,47 @@
+﻿@using WebSchools.Models
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+
+    @{
+        ArticleWriter articleWriter = ViewBag.ArticleWriter;
+    }
+
+    <div class="blg_left">
+        <h3>Dashboards</h3>
+        <hr />
+        <ul class="blg_admn_menus">
+            @*<li>Quick Links</li>*@
+            <li><a href="~/index/index/">WS Home</a></li>
+            <li><a href="~/blogs/home/">Blogs Site Home</a></li>
+            <li><hr /></li>
+            <li>
+                <a href="/Content/Article/Home"><span><i class="fa fa-home"></i></span> Home</a>
+            </li>
+            <li>
+                <a href="/Content/Article/NewArticle"><span><i class="fa fa-pencil"></i></span> Write a new article</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="fix">
+        @RenderBody()
+    </div>
+
+
+</body>
+</html>

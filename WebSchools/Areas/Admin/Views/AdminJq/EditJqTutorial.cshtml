@@ -1,0 +1,99 @@
+﻿@using WebSchools.Models.Jquery
+@model WebSchools.Models.Jquery.JqueryTutorial
+
+@{
+    ViewBag.Title = "EditJqTutorial";
+    Layout = "~/Areas/Admin/Views/Shared/_adminJq.cshtml";
+    JqueryTutorial jqt = ViewBag.JqueryTutorial;
+}
+
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+<div class="form_head">
+    <h2>Edit Jq Tutorial</h2>
+    <b>Current Slug: </b> <span>@jqt.Slug</span>
+</div>
+<div class="well-sm form-group status">
+    @if (ViewBag.Error != null)
+    {
+        <div class="text-danger">@Html.Raw(ViewBag.Error)</div>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <div class="text-success">@Html.Raw(ViewBag.Success)</div>
+    }
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input type="text" name="Id" value="@Model.Id" hidden />
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            <select id="slug" name="Slug" class="form-control">
+                <option value="none">Select Jquery Slug</option>
+                @foreach (JqueryIndex jqi in ViewBag.JqueryIndices)
+                {
+                    <option id="@jqi.Id" value="@jqi.Slug">@jqi.Slug</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubHeading, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.SubHeading, 5, 5, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SubHeading, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubExplanation, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.SubExplanation, 5, 5, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SubExplanation, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CodeSample, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.CodeSample, 5, 5, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CodeSample, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <input type="text" name="Sort" value="123" hidden />
+    <input type="text" name="ActiveStatus" value="false" hidden />
+    <input type="text" name="AwesomeClass" value="awesomeClass" hidden />
+    <input type="text" name="JqueryIndexId" value="@Model.JqueryIndexId" hidden />
+    <input type="text" name="AdminId" value="@Session["JqAdminId"]" hidden />
+    <input type="text" name="Date" value="@System.DateTime.Now" hidden />
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

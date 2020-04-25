@@ -1,0 +1,114 @@
+﻿@using WebSchools.Models.JavaScript
+@using WebSchools.Models.Sql
+@{
+    ViewBag.Title = "SQL";
+    Layout = "~/Areas/Sql/Views/Shared/_Sql.cshtml";
+    SqlIndex sqlSinglePage = ViewBag.SqlSinglePage;
+}
+
+<div class="section_wrapper fix">
+    <div class="articles_wrapper">
+        <div class="">
+            @Html.Raw(sqlSinglePage.MainHeadingDescription)
+        </div>
+        @if (ViewBag.NoneSqlTutorials != null)
+        {
+            <div class="alert alert-danger">
+                <h2>@ViewBag.NoneSqlTutorials</h2>
+            </div>
+        }
+        else
+        {
+            int i = 1;
+            foreach (SqlExample sqlExample in ViewBag.SqlExamples)
+            {
+                <section class="heading_description fix">
+                    <article>
+                        <h3 style="font-size: 20px; font-weight: 100;">@Html.Raw(sqlExample.ExampleHeading)</h3>
+                        <p>@Html.Raw(sqlExample.ExampleHeadingDescription)</p>
+                    </article>
+                </section>
+
+                <section class="sql_example_box">
+                    @sqlExample.ExampleBox
+                </section>
+
+                //foreach (SqlSyntaxBox ssb in ViewBag.SqlSyntaxBoxes)
+                //{
+                    @*<section class="sql_syntax_desc">
+                        @Html.Raw(ssb.SqlSyntaxDescription)
+                    </section>*@
+                    <div class="single_page_wrapper">
+                        <section class="codeExampleWrapper fix">
+                            <div class="codeExampleHeading fix">
+                                <div class="float_left">
+                                    <h3>উদাহরণ</h3>
+                                </div>
+                            </div>
+                            <article class="codeExample fix">
+                                <div class="float_left copy_codes" style="width: 95%">
+                                    @Html.Raw(sqlExample.ExampleBox)
+
+                                    <br />
+                                    <a href="~/sql/sqlTutorial/tryit/@sqlExample.Id" class="try_it_button" target="_blank">Try it Yourself</a>
+
+
+                                </div>
+                                <div class="float_right">
+                                    <span class="copy_button" title="Copy the code"><i class="fa fa-copy"></i></span>
+                                </div>
+                            </article>
+                        </section>
+                        <section>
+                            <h5>@sqlExample.ExampleDescription</h5>
+                        </section>
+
+                        <h3>Demo Table</h3>
+
+                        <table class="table table-bordered table-hover table-condensed table-striped">
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Contact Number</th>
+                                <th>City</th>
+                                <th>Email</th>
+                            </tr>
+                            @foreach (DemoCustomer dc in ViewBag.DemoCustomers)
+                            {
+                                <tr>
+                                    <td>@dc.CustomerName</td>
+                                    <td>@dc.ContactNumber</td>
+                                    <td>@dc.City</td>
+                                    <td>@dc.Email</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
+                //}
+
+
+                @*<section>
+                    <div>
+                        <label>Example Output</label>
+                        <br />
+                        @Html.Raw(sqlTutorial.ExampleOutput)
+                    </div>
+                </section>
+
+                <section>
+                    <article style="margin-top: 30px;">
+                        <div>
+                            <h3>উদাহরণ ব্যাখ্যা</h3>
+                            <p class="explanation">@Html.Raw(sqlTutorial.Explanation)</p>
+                        </div>
+                    </article>
+                </section>*@
+
+            }
+        }
+    </div>
+
+</div>
+
+
+

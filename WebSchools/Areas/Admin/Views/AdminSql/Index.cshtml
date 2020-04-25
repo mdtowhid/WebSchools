@@ -1,0 +1,115 @@
+﻿@using WebSchools.Models.JavaScript
+
+@{
+    ViewBag.Title = "Sql Home";
+    Layout = "~/Areas/Admin/Views/Shared/_adminSql.cshtml";
+    string editJqIndex = "~/admin/adminSql/editSqlIndex/";
+    string editSqlExample = "~/admin/adminSql/editSqlExample/";
+    string editSqlSyntax = "~/admin/adminSql/editSqlSyntax/";
+}
+
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+<br/>
+
+<div class="">
+    <select id="sqlPageSlugId" class="form-control ad_center_dropdown">
+        <option value="0" selected="">Select SQL Page Name</option>
+        @foreach (SqlIndex si in ViewBag.SqlIdices)
+        {
+            <option id="@si.Id" value="@si.Slug">@si.Heading</option>
+        }
+    </select>
+</div>
+<div class="updation_wrapper">
+    <div id="updationDivId"></div>
+    <div id="sqlExamplesUpdateId"></div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function() {
+            $("#sqlPageSlugId").change(function() {
+                var id = $("#sqlPageSlugId option:selected").attr("id");
+                var slug = $(this).val();
+                $('#updationDivId').empty();
+                $("#sqlExamplesUpdateId").empty();
+                if (slug !== "sql_default") {
+                    $("#updationDivId").append("<span class='edit_index'>Edit SQL index: <a href='@Url.Content(editJqIndex)" + $("#sqlPageSlugId option:selected").attr("id") + "'>" + $("#sqlPageSlugId option:selected").text() + "</a></span> <br>");
+                }
+
+                $.ajax({
+                    url: '@Url.Action("GetSqlExampleByPageId", "AdminSql")',
+                    method: "GET",
+                    data: { id : id },
+                    dataType: "json",
+                    success: function(data) {
+                        $.each(data,
+                            function(i, v) {
+                                $("#updationDivId").append("<span class='edit_tutorials'>Edit SQL tutorial: <a href='@Url.Content(editSqlExample)" +v.Id +"'>" +v.ExampleHeading +"</a></span> <br>");
+                            });
+
+                        $.ajax({
+                            url: '@Url.Action("GetSqlSyntaxesByPageId", "AdminSql")',
+                            method: "GET",
+                            data: { id : id },
+                            dataType: "json",
+                            success: function (data) {
+                                $("#sqlExamplesUpdateId").append("<h4 class='example_indicatings'>Examples Based on <b>" + $("#sqlPageSlugId option:selected").text() + "</b></h4>");
+                                $.each(data,
+                                    function (i, v) {
+
+                                        $("#sqlExamplesUpdateId").append("<span class='edit_tutorials'>Edit JS Example: <a href='@Url.Content(editSqlSyntax)" +
+                                            v.Id +
+                                            "'>" +
+                                            v.SubHeading +
+                                            "</a></span> <br>");
+                                    });
+                            },
+                            error: function() {
+                                alert("Oops! There Is An Error");
+                            }
+                        });
+                    },
+                    error: function() {
+                        alert("Oops! There Is An Errorrrrrrr");
+                    }
+                });
+            });
+        });
+    </script>
+}
+@*<h2>Sql Home Page</h2>
+    <div>
+        @foreach (SqlIndex si in ViewBag.SqlIdices)
+        {
+            <b>Edit Index: </b><a href="~/admin/adminSql/editSqlIndex/@si.Id">@si.Heading</a>
+            <div style="border: 1px solid red">
+                <h4>Sql Syntax Box</h4>
+                @foreach (SqlSyntaxBox ssb in ViewBag.SqlSyntax)
+                {
+                    if (si.Slug == ssb.Slug)
+                    {
+                        <b>Edit: </b><a href="~/admin/adminSql/editSqlSyntax/@ssb.Id">@ssb.SubHeading</a>
+                        <br />
+                    }
+
+                }
+            </div>
+            <div style="border: 1px solid red">
+                <h4>Sql Example</h4>
+                @foreach (SqlExample se in ViewBag.SqlExamples)
+                {
+                    if (si.Slug == se.Slug)
+                    {
+                        <b>Edit: </b><a href="~/admin/adminSql/editSqlExample/@se.Id">@se.ExampleHeading</a>
+                        <br />
+                    }
+
+                }
+            </div>
+            <br />
+        }
+    </div>*@
+

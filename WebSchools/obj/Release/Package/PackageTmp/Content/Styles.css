@@ -1,0 +1,363 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: .5s;
+}
+
+body {
+	font-family: Verdana,sans-serif;
+	font-size: 15px;
+	line-height: 1.5;
+}
+a{
+	text-decoration: none;
+}
+ul{
+	list-style-type: none;
+}
+.clear_both {
+    clear: both;
+}
+.float_left {
+    float: left !important;
+}
+.float_right {
+    float: right !important;
+}
+.fix{
+	overflow: hidden;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .5s;
+}
+
+.container_wrapper {
+    width: 100%;
+	position: relative;
+}
+
+.container_fixed{
+	width: 1000px;
+    position: relative;
+	margin: 0 auto;
+}
+.headerBg {
+    background: #24292E;
+}
+.web_school_details {
+    width: 40%;
+    color: white;
+    padding: 140px 0px;
+    color: #DEE4C3;
+    float: left;
+}
+
+.web_school_details h3 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    line-height: 47px;
+    text-align: left;
+}
+.web_school_details p {
+    color: #DEE4C3;
+    line-height: 30px;
+    text-align: left;
+}
+.web_school_carousel {
+    width: 45%;
+    height: 440px;
+    float: right;
+    margin-top: 70px;
+    border-radius: 8px;
+    transition: .5s;
+    text-align: center;
+    color: #DEE4C3;
+    transition: 1s all ease-in;
+    cursor: pointer;
+    border: 1px solid white;
+}
+.web_school_carousel:hover {
+    border: 1px solid #C8C9AC;
+}
+.slides_box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    animation: animateFade 1s linear;
+    text-align: left;
+    line-height: 25px;
+}
+
+@keyframes animateFade {
+    from {
+        transform: scale(1.03);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.slides_box .center {
+    padding: 11px;
+    width: 95%;
+    height: 95%;
+    animation: animateSlideBoxCenter 1s linear;
+    transition: 1s;
+}
+.slides_details>.tutorial_page_button_wr a {
+    background: transparent;
+    border: 1px solid white;
+    color: #DEE4C3;
+    transition: .5s;
+}
+.slides_details>.tutorial_page_button_wr a:hover {
+    border: 1px solid blueviolet;
+}
+/*@keyframes animateSlideBoxCenter {
+    from {
+        left: -50%;
+        opacity: 0;
+    }
+    to {
+        left: 0%;
+        opacity: 1;
+    }
+}
+
+*/
+
+
+
+
+
+
+.slides_details {
+    padding: 10px;
+}
+
+
+
+
+.tutorial_box {
+     text-align: center;
+    margin-bottom: 20px;
+}
+
+.toggle_on_sm{ display: none;}
+
+.tutorial_box h2{
+    margin-top: 60px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.tutorial_box p{
+    font-style: italic;
+    opacity: .8;
+    font-size: 15px;
+}
+.tutorial_details {
+    text-align: center;
+}
+
+.tutorial_details {
+    width: 47%;
+    height: auto;
+    float: left;
+    padding: 17px 0;
+    text-align: left;
+}
+    .tutorial_details p {
+        font-style: normal;
+        font-size: 17px;
+    }
+
+.tutorial_example {
+    width: 50%;
+    float: right;
+    text-align: left;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    background: #f3f3f3;
+    padding: 12px 25px;
+    border-radius: 4px;
+    line-height: 25px;
+    position: relative;
+}
+
+.tutorial_page_button_wr a {
+    background: #ccc;
+    color: #800000;
+    transition: .5s;
+    text-decoration: none;
+    clear: left;
+    display: inline-block;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.tutorial_example a:hover {
+    background: #eee;
+    box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important
+}
+
+.tutorial_example_output {
+    width: 100%;
+    height: auto;
+}
+/*all language syntext classes*/
+.ang_color {
+    color: #0000FF;
+    font-size: 20px;
+}
+.tag_name_color {
+    color: #800000;
+    font-size: 17px;
+}
+.tag_text {
+    font-size: 16px;
+    color: #262626;
+}
+.css_curley_bracet {
+    color: black;
+    font-weight: bold;
+}
+.css_property {
+    font-size: 17px;
+    margin-left: 20px;
+}
+
+/*For jQuery*/
+.trigger {
+    width: 100%;
+    background: #2B3137;
+    color: #DEE4C3;
+    text-align: center;
+    font-size: 17px;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.trigger_element {
+    position: relative;
+    width: 100%;
+    background: #2B3137;
+    color: #DEE4C3;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.js_logo {
+    background: black;
+    color: white;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.footerBg {
+    background: #FAFBFC;
+    height: 80px;
+    padding-top: 30px;
+    margin-bottom: -20px;
+    margin-top: -16px;
+}
+
+.tutorials_wrapper {
+    background: #ddd;
+}
+
+#header {
+    width: 100%;
+}
+
+#header .logo {
+    color: #DEE4C3;
+    float: left;
+    font-size: 35px;
+    margin-top: 5px;
+}
+
+#header .lg_devices_menu {
+    list-style-type: none;
+    height: auto;
+    float: left;
+    margin-left: 10px;
+}
+
+#header .lg_devices_menu li{
+    float: left;
+}
+
+    #header .lg_devices_menu li a {
+        display: block;
+        color: #DEE4C3;
+        text-decoration: none;
+        padding: 0 10px;
+        padding-top: 15px;
+        font-size: 20px;
+        padding-top: 23px;
+        font-family: lato;
+        font-family: 'Segoe UI',Arial,sans-serif;
+    }
+
+#header .lg_devices_menu li a:hover{
+   
+}
+#header .toogle_icon_wrapper {
+    color: #DEE4C3;
+    float: right;
+    font-size: 30px;
+    margin-top: 10px;
+    display: none;
+    cursor: pointer;
+}
+
+.sm_devices_menu {
+    list-style-type: none;
+    margin-top: 60px;
+}
+
+#navbar {
+    display: none;
+}
+
+.sm_devices_menu li {
+    width: 100%;
+
+}
+    .sm_devices_menu li a {
+        display: block;
+        color: #DEE4C3;
+        text-decoration: none;
+        text-align: center;
+        padding: 15px 10px;
+        font-size: 20px;
+        font-family: 'Segoe UI',Arial,sans-serif;
+    }
+.sm_devices_menu li a:hover{}
+
+.display_block{
+	display: block !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+

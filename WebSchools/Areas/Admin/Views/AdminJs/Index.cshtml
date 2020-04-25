@@ -1,0 +1,82 @@
+﻿@using WebSchools.Models.JavaScript
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminJs.cshtml";
+    string editJsTutorialPage = "~/admin/adminJs/editJsTutorial/";
+    string editJsExamplPage = "~/admin/adminJs/editJsExample/";
+    string editJsIndex = "~/admin/adminJs/editJsIndex/";
+}
+
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+<div class="">
+    <select id="jsPageSlugId" class="form-control ad_center_dropdown">
+        <option value="0" selected="">Select JS Page Name</option>
+        @foreach (JavaScriptIndex jsi in ViewBag.JsIndices)
+        {
+            <option value="@jsi.Slug">@jsi.Heading</option>
+        }
+    </select>
+</div>
+
+<div class="updation_wrapper">
+    <div id="updationDivId"></div>
+    <div id="jsExamplesUpdateId"></div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function() {
+            $("#jsPageSlugId").change(function() {
+                var slug = $(this).val();
+                $('#updationDivId').empty();
+                $("#jsExamplesUpdateId").empty();
+                if (slug !== "js_default") {
+                    $("#updationDivId").append("<span class='edit_index'>Edit JS index: <a href='@Url.Content(editJsIndex)" + $(this).val() + "'>" + $("#jsPageSlugId option:selected").text() + "</a></span> <br>");
+                }
+                
+                $.ajax({
+                    url: '@Url.Action("GetJsTutorialsByPageSlug", "AdminJs")',
+                    method: "GET",
+                    data: { slug: slug },
+                    dataType: "json",
+                    success: function(data) {
+                        $.each(data,
+                            function(i, v) {
+                                $("#updationDivId").append("<span class='edit_tutorials'>Edit JS tutorial: <a href='@Url.Content(editJsTutorialPage)" +v.Slug +"'>" +v.Heading +"</a></span> <br>");
+                                
+                            });
+
+                        $.ajax({
+                            url: '@Url.Action("GetJsExampleByPageSlug", "AdminJs")',
+                            method: "GET",
+                            data: { slug: slug },
+                            dataType: "json",
+                            success: function (data) {
+                                $("#jsExamplesUpdateId").append("<h4 class='example_indicatings'>Examples Based on <b>" + $("#jsPageSlugId option:selected").text() + "</b></h4>");
+                                $.each(data,
+                                    function (i, v) {
+
+                                        $("#jsExamplesUpdateId").append("<span class='edit_tutorials'>Edit JS Example: <a href='@Url.Content(editJsExamplPage)" +
+                                            v.Id +
+                                            "'>" +
+                                            v.SubHeading +
+                                            "</a></span> <br>");
+                                    });
+                            },
+                            error: function() {
+                                alert("Oops! There Is An Error");
+                            }
+                        });
+                    },
+                    error: function() {
+                        alert("Oops! There Is An Error");
+                    }
+                });
+            });
+        });
+    </script>
+}
+

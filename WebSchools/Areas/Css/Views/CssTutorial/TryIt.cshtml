@@ -1,0 +1,23 @@
+﻿@model WebSchools.Models.Css.CssTutorial
+@{
+    ViewBag.Title = "Try It - " + @Model.CssPropertyHeadingName;
+    Layout = "~/Views/Shared/_tryIt.cshtml";
+}
+
+<div class="container_wrapper editor_wrapper fix">
+    <ul class="try_it_menu">
+        <li id="run_button">Run</li>
+        <li class="toggle_editor_color">
+            <span>Light</span>
+            <span>Dark</span>
+        </li>
+    </ul>
+    <div class="editor">
+        <textarea class="editor_codes">
+            @Model.Example
+        </textarea>
+
+        <div id="editor_result"></div>
+    </div>
+
+</div>

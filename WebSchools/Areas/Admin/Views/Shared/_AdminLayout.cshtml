@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <style>
+        h4{
+            opacity: .7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container_wrapper fix">
+        <div class="ad_menu_wrapper fix float_left">
+            <h2 style="opacity: .9">Dashboards</h2>
+            <div id="">
+                <h4><a class="ad_m_btn" href="#html">HTML</a></h4>
+                <ul class="admin_menu_list">
+                    <li><a href="~/admin/adminHtml/default/">HTML Default</a> </li>
+                    <li><a href="~/admin/adminHtml/createHtmlIndex/"> Create HTML Index</a></li>
+                    <li><a href="~/admin/adminHtml/ceateHtmlTutorial/">Create HTML Tutorials</a></li>
+                </ul>
+
+
+                <h4><a class="ad_m_btn" href="#css">CSS</a></h4>
+                <ul class="admin_menu_list">
+                    <li><a href="~/admin/adminCss/index">CSS Home</a></li>
+                    <li><a href="~/admin/adminCss/createCssIndex">Create CSS Index</a></li>
+                    <li><a href="~/admin/adminCss/createCssTutorial">Create Css Tutorial</a></li>
+                </ul>
+
+                <h4><a class="ad_m_btn" href="#javaScript">JavaScript</a></h4>
+                <ul class="admin_menu_list">
+                    <li><a href="~/admin/adminJs/index/">JS Home</a></li></li>
+                    <li><a href="~/admin/adminJs/createJsIndex/">Create Index</a></li>
+                    <li><a href="~/admin/adminJs/createJsTutorial/">Create Tutorial</a></li>
+                    <li><a href="~/admin/adminJs/createJsExample/">Create Example</a></li>
+                </ul>
+
+                <h4><a class="ad_m_btn" href="#jQuery">jQuery</a></h4>
+                <ul class="admin_menu_list">
+                    <li><a href="~/admin/adminJq/index/">jQ Home</a></li>
+                    <li><a href="~/admin/adminJq/createJqIndex/">Create jQ Index</a></li>
+                    <li><a href="~/admin/adminJq/createJqTutorial/">Create jQ Tutorial</a></li>
+                    <li><a href="~/admin/adminJq/createJqExample/">Create jQ Example</a></li>
+                </ul>
+
+
+                <h4><a class="ad_m_btn" href="#sql">SQL Home</a></h4>
+                <ul class="admin_menu_list">
+                    <li><a href="~/admin/adminSql/index/">SQL Home</a></li>
+                    <li><a href="~/admin/adminSql/createSqlIndex/">Create SQL Index</a></li>
+                    <li><a href="~/admin/adminSql/createSqlSyntax/">Create SQL Syntax</a></li>
+                    <li><a href="~/admin/adminSql/createSqlExample/">Create SQL Example</a></li>
+                </ul>
+
+                <h4><a class="ad_m_btn" href="#sql">ICT</a></h4>
+                <ul class="admin_menu_list">
+                    <li><a href="~/admin/adminSq/inde/">ICT Home</a></li>
+                    <li><a href="~/admin/adminSq/createSqlInde/">Create ICT Index</a></li>
+                </ul>
+
+            </div>
+
+                @*<div id="accordion1">
+                <h4><a href="~/Admin/Admin/Default/">Home</a></h4>
+                <div class="panel1">
+                    <a href="~/admin/adminHtml/default/">HTML Default</a>
+                    <a href="~/admin/adminHtml/createHtmlIndex/"> Create HTML Index</a>
+                    <a href="~/admin/adminHtml/ceateHtmlTutorial/">Create HTML Tutorials</a>
+                </div>
+
+                <h4><a class="ad_m_btn" href="#css">CSS</a></h4>
+                <div class="panel1">
+                    <a href="~/admin/adminCss/index">CSS Home</a>
+                    <a href="~/admin/adminCss/createCssIndex">Create CSS Index</a>
+                    <a href="~/admin/adminCss/createCssTutorial">Create Css Tutorial</a>
+                </div>
+
+                <h4>
+                    <a class="ad_m_btn" href="#javaScript">JavaScript</a>
+                </h4>
+                <div class="panel1">
+                    <a href="~/admin/adminJs/index/">JS Home</a>
+                    <a href="~/admin/adminJs/createJsIndex/">Create Index</a>
+                    <a href="~/admin/adminJs/createJsTutorial/">Create Tutorial</a>
+                    <a href="~/admin/adminJs/createJsExample/">Create Example</a>
+                </div>
+
+                <h4>
+                    <a class="ad_m_btn" href="#jQuery">jQuery</a>
+                </h4>
+                <div class="panel1">
+                    <a href="~/admin/adminJq/index/">JS Home</a>
+                    <a href="~/admin/adminJq/createJqIndex/">Create jQ Index</a>
+                    <a href="~/admin/adminJq/createJqTutorial/">Create jQ Tutorial</a>
+                    <a href="~/admin/adminJq/createJqExample/">Create jQ Example</a>
+                </div>
+
+
+                <h4>
+                    <a class="ad_m_btn" href="#sql">SQL Home</a>
+                </h4>
+                <div class="panel1">
+                    <a href="~/admin/adminSql/index/">SQL Home</a></li>
+                    <a href="~/admin/adminSql/createSqlIndex/">Create SQL Index</a>
+                    <a href="~/admin/adminSql/createSqlSyntax/">Create SQL Syntax</a>
+                    <a href="~/admin/adminSql/createSqlExample/">Create SQL Example</a>
+                </div>
+
+
+                <h4>
+                    <a class="ad_m_btn" href="#learnHowTo">Learn How To</a>
+                </h4>
+                <div class="panel1">
+                    <a href="~/admin/adminHowTo/index/">How To Home</a></li>
+                    <a href="~/admin/adminHowTo/createHowToIndex/">Create How To Index</a>
+                    <a href="~/admin/adminHowTo/createHowToTutorial/">Create How To Tutorial</a>
+                    <a href="~/admin/adminHowTo/createHowToExample/">Create How To Example</a>
+                </div>
+            </div>*@
+
+            </div>
+
+            <div class="container_fixed fix float_right ad_render_page">
+                @RenderBody()
+            </div>
+        </div>
+</body>
+</html>
+

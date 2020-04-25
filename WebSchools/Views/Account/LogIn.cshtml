@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_D.cshtml";
+}
+
+@if (ViewBag.LogInError != null)
+{
+<div class="jumbotron jumbotron-fluid">
+    <h4 class="text-danger">@ViewBag.LogInError</h4>
+</div>
+}
+<a href="~/Account/SignUp">Go Back</a>
+

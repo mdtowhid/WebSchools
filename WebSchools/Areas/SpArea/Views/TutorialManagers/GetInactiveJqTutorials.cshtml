@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WebSchools.Models.Jquery.JqueryTutorial>
+
+@{
+    ViewBag.Title = "Inactive Jq Tutorials";
+    Layout = "~/Areas/SpArea/Views/Shared/_SpArea.cshtml";
+}
+
+<div class="sp_right fix">
+    @Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+    <h2>Inactive Jq Tutorials</h2>
+
+    <table class="table table-striped table-condensed table-bordered table-responsive  table-sm">
+        <tr>
+            <th>
+                Sub Heading
+            </th>
+            <th>
+                Sub. Expln.
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodeSample)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sort)
+            </th>
+            <th>
+                Act S
+            </th>
+            <th>
+                Asm Class
+            </th>
+            <th>
+                JID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdminId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.SubHeading.Substring(0,15)
+                </td>
+                <td>
+                    @item.SubExplanation.Substring(0, 15)
+                </td>
+                <td>
+                    @item.CodeSample.Substring(0, 15)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActiveStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AwesomeClass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JqueryIndexId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdminId)
+                </td>
+                <td>
+                    @item.Date.Substring(0,15)
+                </td>
+                <td>
+                    <a href="~/spArea/tutorialManagers/editJqTutorial/@item.Id"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

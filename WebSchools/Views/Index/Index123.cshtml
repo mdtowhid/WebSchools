@@ -1,0 +1,233 @@
+﻿@using System.Web.UI.WebControls
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="aboutWeb" style="">
+    <div class="container_fixed fix" >
+        <div class="web_school_details">
+            <h3>বিশ্বের সবচেয়ে ক্ষুদ্র ওয়েব ডেভেলপার সাইট.</h3>
+            <p>ওয়েবস্কুল শেখার, পরীক্ষার, এবং প্রশিক্ষণ জন্য অপ্টিমাইজ করা হয়। উদাহরণ পড়ার এবং মৌলিক বোঝার উন্নতি সাধন করা যেতে পারে। টিউটোরিয়াল, রেফারেন্স, এবং উদাহরণগুলি ক্রমাগত ত্রুটিগুলি এড়ানোর জন্য পর্যালোচনা করা হয়, তবে আমরা সমস্ত সামগ্রীর সম্পূর্ণ সঠিকতা যাচাই করতে পারি না।</p>
+        </div>
+
+        <div class="web_school_carousel fix hide_sm_devices" @*onmouseover="stopSlide(this);" onmouseout="startSlides(this)"*@>
+            <div class="slides_box">
+                <div class="slides_details center">
+                    <h3>এইচটিএমএল</h3>
+                    <p>হাইপারটেক্সট মার্কআপ ভাষা (এইচটিএমএল) ওয়েব পেজ এবং ওয়েব অ্যাপ্লিকেশন তৈরির জন্য আদর্শ মার্কআপ ভাষা।</p>
+                    <div class="tutorial_page_button_wr">
+                        @Html.ActionLink("Learn Html", "Index", "HtmlTutorial", new { area = "Html" }, null)
+                    </div>
+                </div>
+            </div>
+            <div class="slides_box">
+                <div class="slides_details center">
+                    <h3>সিএসএস</h3>
+                    <p>একবার আপনি HTML এর বুনিয়াদি শিখেছেন, এটি ক্যাসকেডিং স্টাইল শীট (সিএসএস) এক্সপ্লোর শুরু করার সময়, ব্রাউজারে এইচটিএমএল দুর্দান্ত দেখাচ্ছে এমন ভাষা।</p>
+                    <div class="tutorial_page_button_wr">
+                        @Html.ActionLink("Learn CSS", "Index", "CssTutorial", new { area = "Css" }, null)
+                    </div>
+                </div>
+            </div>
+            <div class="slides_box">
+                <div class="slides_details center">
+                    <h3>জাভাস্ক্রিপ্ট</h3>
+                    <p>জাভাস্ক্রিপ্ট এইচটিএমএল বরাবর ব্যবহৃত একটি গতিশীল স্ক্রিপ্টিং ভাষা। এটি একটি পরিভাষাযুক্ত ভাষা যা ওয়েব পৃষ্ঠাগুলিতে গতিবিদ্যা সামগ্রী যুক্ত করতে ব্যবহৃত হয়। জাভাস্ক্রিপ্ট ক্লায়েন্ট-সাইড মেকানিজম প্রচলিত CGI সার্ভার-পার্শ্ব স্ক্রিপ্টগুলির উপর অনেক সুবিধা প্রদান করে এমন অনেক ইভেন্ট রয়েছে যা জাভাস্ক্রিপ্ট কার্যকর করে। জাভাস্ক্রিপ্ট শিখতে সহজ।</p>
+                    <div class="tutorial_page_button_wr">
+                        @Html.ActionLink("Learn JavaScript", "Js", "JavaScriptTutorial", new { area = "JavaScript", id = "js_default" }, null)
+                    </div>
+                </div>
+            </div>
+
+            <div class="slides_box">
+                <div class="slides_details center">
+                    <h3>JQuery কি?</h3>
+                    <p>এইচটিএমএল ক্লায়েন্ট-সাইড স্ক্রিপ্টিং এর স্বচ্ছন্দে জাভাস্ক্রিপ্ট সবচেয়ে অসাধারণ ক্রস-ব্রাউজার জাভাস্ক্রিপ্ট লাইব্রেরি। এটি সংক্ষিপ্ত করতে, এটি একটি "ব্যবহার করার জন্য প্রস্তুত" জাভাস্ক্রিপ্ট লাইব্রেরি যা অনেক চাক্ষুষ ফাংশন যেমন জনপ্রিয় সহজ-ইন, স্বচ্ছন্দ-আউট প্রভাব রয়েছে। JQuery এর প্রভাবশালী প্রভাবগুলির বেশ কয়েকটি কারণ, ওয়েব ডিজাইনাররা প্রায়ই তাদের ডিজাইনগুলিকে অনেক সুন্দর এবং আরও মার্জিত করে তুলতে ব্যবহার করে।</p>
+                    <div class="tutorial_page_button_wr">
+                        @*@Html.ActionLink("Learn Jquery", "Index", "Jquery")*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="slides_box">
+                <div class="slides_details center">
+                    <h3>Learn How to</h3>
+                    <p>What you already know. To Learn How to You to basic knowladge about HTML CSS And JavaScript.</p>
+                    <div class="tutorial_page_button_wr">
+                        @Html.ActionLink("Learn Learn How To", "Index", "LearnHowTo")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="height: auto; background: #fff">
+    <div class="container_fixed fix" id="htmlId">
+        <section class="tutorial_box fix">
+            <article>
+                <h2>এইচটিএমএল<span> <i class="fa fa-html5"></i></span></h2>
+                <p>এইচটিএমএল tutorial</p>
+                <div class="tutorial_details">
+                    <h3>এইচটিএমএল কি?</h3>
+                    <p>হাইপারটেক্সট মার্কআপ ভাষা (এইচটিএমএল) ওয়েব পেজ এবং ওয়েব অ্যাপ্লিকেশন তৈরির জন্য আদর্শ মার্কআপ ভাষা।</p>
+                </div>
+                <div class="tutorial_example">
+                    <h5>উদাহরণ</h5>
+                    <code><span class="ang_color">&lt;</span><span class="tag_name_color">!DOCTYPE html</span><span class="ang_color">&gt;</span></code>
+                    <br />
+                    <code><span class="ang_color">&lt;</span><span class="tag_name_color">html</span><span class="ang_color">&gt;</span></code>
+                    <br />
+                    <code><span class="ang_color">&lt;</span><span class="tag_name_color">head</span><span class="ang_color">&gt;</span></code>
+                    <br />
+                    <code><span class="ang_color">&lt;</span><span class="tag_name_color">title</span><span class="ang_color">&gt;</span></code>
+
+                    <code><span class="tag_text">WebSchools Html Tutorial</span><span class="ang_color">&lt;</span><span class="tag_name_color">/title</span><span class="ang_color">&gt;</span></code>
+                    <br />
+
+                    <code><span class="ang_color">&lt;</span><span class="tag_name_color">/head</span><span class="ang_color">&gt;</span></code>
+                    <br />
+                    <code><span class="ang_color">&lt;</span><span class="tag_name_color">body</span><span class="ang_color">&gt;</span></code>
+                    <br />
+
+                    <code><span class="ang_color">&lt;</span><span class="tag_name_color">p</span><span class="ang_color">&gt;</span></code>
+                    <code><span class="tag_text">This is a paragraph</span><span class="ang_color">&lt;</span><span class="tag_name_color">/p</span><span class="ang_color">&gt;</span></code>
+
+                    <br />
+                    <code><span class="ang_color">&lt;</span><span class="tag_name_color">/body</span><span class="ang_color">&gt;</span></code>
+                    <br />
+                    <code><span class="ang_color">&lt;</span><span class="tag_name_color">/html</span><span class="ang_color">&gt;</span></code>
+                    <hr />
+                    <div class="tutorial_page_button_wr">
+                        @Html.ActionLink("Learn Html", "Index", "HtmlTutorial", new{ area="Html"}, null)
+                    </div>
+                </div>
+            </article>
+        </section>
+        @*<div class="clear_both"></div>
+        <div class="tutorial_example_output">
+            <h3>উদাহরণ ব্যাখ্যা</h3>
+            <p>শীঘ্রই আসছে ব্যাখ্যা ...</p>
+        </div>*@
+    </div>
+</div>
+<hr/>
+
+<div style="height: auto; background: #fff">
+    <div class="container_fixed fix" id="cssId">
+        <section class="tutorial_box fix">
+            <article>
+                <h2>CSS<span> <i class="fa fa-css3"></i></span></h2>
+                <p>CSS tutorial</p>
+                <div class="tutorial_details">
+                    <h3>সিএসএস কি?</h3>
+                    <p>একবার আপনি HTML এর বুনিয়াদি শিখেছেন, এটি ক্যাসকেডিং স্টাইল শীট (সিএসএস) এক্সপ্লোর শুরু করার সময়, ব্রাউজারে এইচটিএমএল দুর্দান্ত দেখাচ্ছে এমন ভাষা। এই কোর্সটি আপনাকে সম্ভাবনার একটি সফর দেয়, যা সিএসএস কী করতে সক্ষম তা এবং এটি আপনার জন্য কাজ করার জন্য প্রয়োজনীয় বুনিয়াদিগুলি দেখায়। </p>
+                </div>
+                <div class="tutorial_example">
+                    <h5>উদাহরণ</h5>
+                    <code><span class="tag_name_color">body</span><span class="css_curley_bracet"> {</span>  <br /> <span class="css_property">backround: lightblue;</span> <br /><span class="css_curley_bracet">}</span> </code>
+                    <br />
+                    <code><span class="tag_name_color">p</span><span class="css_curley_bracet"> {</span>  <br /> <span class="css_property">color: lightblue;<br /><span style="margin-left: 20px;">font-family: arila;</span></span> <br /><span class="css_curley_bracet">}</span> </code>
+                    <hr/>
+                    
+                    <div class="tutorial_page_button_wr">
+                        @Html.ActionLink("Learn CSS", "Index", "CssTutorial", new { area="Css"}, null)
+                    </div>
+                </div>
+            </article>
+        </section>
+        @*<div class="clear_both"></div>
+        <div class="tutorial_example_output">
+            <h3>উদাহরণ ব্যাখ্যা</h3>
+            <p>শীঘ্রই আসছে ব্যাখ্যা ...</p>
+        </div>*@
+    </div>
+</div>
+<hr />
+
+<div style="height: auto; background: #fff">
+    <div class="container_fixed fix" id="javaScriptId">
+        <section class="tutorial_box fix">
+            <article>
+                <h2>JavaScript<span class="js_logo"><i class="fa fa-js-square"></i> JS</span></h2>
+                <p>JavaScript tutorial</p>
+                <div class="tutorial_details">
+                    <h3>JavaScript কি?</h3>
+                    <p>জাভাস্ক্রিপ্ট এইচটিএমএল বরাবর ব্যবহৃত একটি গতিশীল স্ক্রিপ্টিং ভাষা। এটি একটি পরিভাষাযুক্ত ভাষা যা ওয়েব পৃষ্ঠাগুলিতে গতিবিদ্যা সামগ্রী যুক্ত করতে ব্যবহৃত হয়। জাভাস্ক্রিপ্ট ক্লায়েন্ট-সাইড মেকানিজম প্রচলিত CGI সার্ভার-পার্শ্ব স্ক্রিপ্টগুলির উপর অনেক সুবিধা প্রদান করে এমন অনেক ইভেন্ট রয়েছে যা জাভাস্ক্রিপ্ট কার্যকর করে। জাভাস্ক্রিপ্ট শিখতে সহজ।</p>
+                </div>
+                <div class="tutorial_example">
+                    <h5>উদাহরণ</h5>
+                    <p>শীঘ্রই আসছে</p>
+                    <div class="tutorial_page_button_wr">
+                        @Html.ActionLink("Learn JavaScript", "Js", "JavaScriptTutorial", new { area = "JavaScript", id = "js_default" }, null)
+                    </div>
+                </div>
+            </article>
+        </section>
+        @*<div class="clear_both"></div>
+        <div class="tutorial_example_output">
+            <h3>উদাহরণ ব্যাখ্যা</h3>
+            <p>শীঘ্রই আসছে ব্যাখ্যা ...</p>
+        </div>*@
+    </div>
+</div>
+<hr/>
+<div style="height: auto; background: #fff">
+    <div class="container_fixed fix" id="jQueryId">
+        <section class="tutorial_box fix">
+            <article>
+                <h2>Jquery<span><i class="fa fa-js-square"></i></span></h2>
+                <p>jQuery tutorial</p>
+                <div class="tutorial_details">
+                    <h3>JQuery কি?</h3>
+                    <p>এইচটিএমএল ক্লায়েন্ট-সাইড স্ক্রিপ্টিং এর স্বচ্ছন্দে জাভাস্ক্রিপ্ট সবচেয়ে অসাধারণ ক্রস-ব্রাউজার জাভাস্ক্রিপ্ট লাইব্রেরি। এটি সংক্ষিপ্ত করতে, এটি একটি "ব্যবহার করার জন্য প্রস্তুত" জাভাস্ক্রিপ্ট লাইব্রেরি যা অনেক চাক্ষুষ ফাংশন যেমন জনপ্রিয় সহজ-ইন, স্বচ্ছন্দ-আউট প্রভাব রয়েছে। JQuery এর প্রভাবশালী প্রভাবগুলির বেশ কয়েকটি কারণ, ওয়েব ডিজাইনাররা প্রায়ই তাদের ডিজাইনগুলিকে অনেক সুন্দর এবং আরও মার্জিত করে তুলতে ব্যবহার করে।</p>
+                </div>
+                <div class="tutorial_example">
+                    <h5>উদাহরণ</h5>
+                    <div class="trigger">Slide</div>
+                    <div class="trigger_element">
+                        শ্রীলঙ্কার বিপক্ষে তামিম ইকবাল-লিটন দাসের উদ্বোধনী জুটি ভেঙেছে ১ রানে। চোটে পড়ায় তামিম দেশে ফিরে আসায় আফগানিস্তানের বিপক্ষে বাংলাদেশের ইনিংস শুরু করার দায়িত্ব পড়ে লিটন ও নাজমুল হোসেনের কাঁধে।
+                    </div>
+                    <div class="tutorial_page_button_wr">
+                        <a href="/jquery/jqueryTutorial/jq/jq_default">Learn Jquery</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+        @*<div class="clear_both"></div>
+        <div class="tutorial_example_output">
+            <h3>উদাহরণ ব্যাখ্যা</h3>
+            <p>শীঘ্রই আসছে ব্যাখ্যা ...</p>
+        </div>*@
+    </div>
+</div>
+<hr />
+
+<div style="height: auto; background: #fff">
+    <div class="container_fixed fix" id="howToId">
+        <section class="tutorial_box fix">
+            <article>
+                <h2>Learn How To<span></span></h2>
+                <p>Learn How To</p>
+                <div class="tutorial_details">
+                    <p>আসন্ন টিউটোরিয়াল জন্য অপেক্ষা করুন</p>
+                </div>
+                <div class="tutorial_example">
+                    <h5>উদাহরণ</h5>
+                    
+                    <h1>শীঘ্রই আসছে</h1>
+                    <div class="tutorial_page_button_wr">
+                        @Html.ActionLink("Learn How To", "Index", "LearnHowTo", new {area="HowTo"}, null)
+                    </div>
+                </div>
+            </article>
+        </section>
+        @*<div class="clear_both"></div>
+        <div class="tutorial_example_output">
+            <h3>উদাহরণ ব্যাখ্যা</h3>
+            <p>আসন্ন টিউটোরিয়াল জন্য অপেক্ষা করুন</p>
+        </div>*@
+    </div>
+</div>
+

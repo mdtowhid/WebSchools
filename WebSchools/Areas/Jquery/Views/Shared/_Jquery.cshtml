@@ -1,0 +1,146 @@
+﻿@using WebSchools.Models
+@using WebSchools.Models.Jquery
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @{
+        JqueryIndex jqIndex = ViewBag.SinglePage;
+        string href = "/Jquery/JqueryTutorial/jq/";
+    }
+
+</head>
+<body>
+    <div class="container_wrapper fix" id="innerPageZIndex">
+        <div class="" id="overlays">
+            <div class="tutorial_menu_wrap float_left fix">
+
+                <span class="page_resizer" title="Resize this page">&equiv;</span>
+                <div class="hide_on_resized">
+                    <ul class="tutorial_menu_list_header">
+                        <li><a href="~/index/index">&lArr; HOME</a></li>
+                        <li><h4 class="heading_current_page_indigator">Jquery টিউটোরিয়াল</h4></li>
+                        <li style="padding: 0">
+                            <div class="custom_checkbox_lang"></div>
+                        </li>
+                        <li><input id="searchBoxId" type="text" placeholder="Search here" /></li>
+                    </ul>
+
+                    <ul class="tutorial_menu_list fix">
+                        @foreach (JqueryIndex ji in ViewBag.JqIndices)
+                        {
+                            if (jqIndex.Slug == ji.Slug)
+                            {
+                                <li class="active"><a href="~/jquery/jqueryTutorial/jq/@ji.Slug">@ji.Heading</a></li>
+                            }
+                            else
+                            {
+                                <li class=""><a href="~/jquery/jqueryTutorial/jq/@ji.Slug">@ji.Heading</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="body_wrapper float_right fix" style="">
+            @Html.Partial("~/Views/Shared/_menus.cshtml", null)
+            <div class="under_nav fix">
+                <span class="hide_lg_devices float_left" id="open_menu">
+                    <i class="fa fa-bars"></i>
+                </span>
+
+                <h4>@jqIndex.Heading</h4>
+
+            </div>
+            <div class="the_render_body" id="innerPageMarginBottom">
+                @RenderBody()
+                <section class="nextPrevSectionWrapper">
+                    <article class="nextPrevArticleWrapper">
+                        <div class="nextPrev">
+                            @{
+                                JqueryIndex nextPage = ViewBag.NextPage;
+                                JqueryIndex prevPage = ViewBag.PrevPage;
+                            }
+                            <a style="float: left" href="~/jquery/jqueryTutorial/jq/@prevPage.Slug">Prev Page</a>
+                            <a style="float: right" href="~/jquery/jqueryTutorial/jq/@nextPage.Slug">Next Page</a>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+        </div>
+    </div>
+    @Html.Partial("~/Views/Shared/_InnerPageFooter.cshtml", null)
+    <script>
+        $(document).ready(function() {
+            function menuItems(data) {
+                $.each(data,
+                    function(i, v) {
+                        var li = $('<li></li>');
+                        li.append('<a href="@Url.Content(href)' + v.Slug + '">' + v.Heading + '</a>');
+                        $('.tutorial_menu_list').append(li);
+                    });
+            }
+
+            @*$.ajax({
+                url: '@Url.Action("GetJsIndices", "JqueryTutorial")',
+                method: "GET",
+                data: {},
+                dataType: "json",
+                success: function(data) {
+                    $('.tutorial_menu_list').empty();
+                    menuItems(data);
+                },
+                error: function() {
+                    alert("Oops! There Is An Error");
+                }
+            });*@
+
+            $('#searchBoxId').keyup(function () {
+                var queryString = $(this).val();
+                var checkBoxVal = $('input[type="radio"]:checked').val();
+                if (checkBoxVal == "bangla") {
+                    $.ajax({
+                        url: '@Url.Action("GetJqIndicesByBanglaQuery", "JqueryTutorial")',
+                        method: "GET",
+                        data: { queryString: queryString },
+                        dataType: "json",
+                        success: function(data) {
+                            $('.tutorial_menu_list').empty();
+                            menuItems(data);
+                        },
+                        error: function() {
+                            alert("Oops! There Is An Error");
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: '@Url.Action("GetJqIndicesByEnglishQuery", "JqueryTutorial")',
+                        method: "GET",
+                        data: { queryString: queryString },
+                        dataType: "json",
+                        success: function(data) {
+                            $('.tutorial_menu_list').empty();
+                            menuItems(data);
+                        },
+                        error: function() {
+                            alert("Oops! There Is An Error");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

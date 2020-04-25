@@ -1,0 +1,56 @@
+﻿@using WebSchools.Models.Php
+
+@{
+    ViewBag.Title = "Php";
+    Layout = "~/Areas/Php/Views/Shared/_Php.cshtml";
+    PhpIndex phpSinglePage = ViewBag.PhpSinglePage;
+}
+
+
+<div class="section_wrapper fix">
+    <div class="articles_wrapper">
+        <div class="">
+            @Html.Raw(phpSinglePage.HeadingDescription)
+        </div>
+
+        @if (ViewBag.NonePhpTutorials != null)
+        {
+            <div class="alert alert-success">
+                <h2>@ViewBag.NonePhpTutorials</h2>
+            </div>
+        }
+        else
+        {
+            foreach (PhpTutorial pt in ViewBag.PhpTutorials)
+            {
+                if (pt.ActiveStatus)
+                {
+                    <div class="js_tutorial_box">
+                        <h2>@Html.Raw(pt.SubHeading)</h2>
+                        @Html.Raw(pt.HeadingDescription)
+                    </div>
+
+
+                    <section class="codeExampleWrapper fix">
+                        <div class="codeExampleHeading fix">
+                            <div class="float_left">
+                                <h3>উদাহরণ</h3>
+                            </div>
+                        </div>
+                        <article class="codeExample fix">
+                            <div class="float_left copy_codes" style="width: 95%">
+                                @Html.Raw(pt.Example)
+                            </div>
+                            <div class="float_right">
+                                <span class="copy_button" title="Copy the code"><i class="fa fa-copy"></i></span>
+                            </div>
+                            @*<a href="~/javaScript/javaScriptTutorial/tryIt/@jsExample.Id" class="try_it_button" target="_blank">Try it Yourself</a>*@
+                        </article>
+                    </section>
+                }
+
+            }
+        }
+    </div>
+</div>
+

@@ -1,0 +1,88 @@
+﻿﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+    <link href="~/Content/Responsives.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-localScroll/2.0.0/jquery.localScroll.min.js"></script>
+
+    <script src="~/Scripts/Scripts.js"></script>
+
+</head>
+<body>
+
+    <div class="container_wrapper headerBg" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important">
+        <div class="container_fixed fix">
+            <header id="header">
+                <div class="logo">
+                    <a href="~/Index/Index"><span><i class="fa fa-home"></i></span></a>
+                </div>
+                <div class="webschool">
+                    <p><a href="~/Index/Index">ওয়েবস্কুলস.কম.বিডি</a></p>
+                </div>
+
+                <nav class="">
+                    <ul class="lg_devices_menu">
+                        <li><a href="~/Html/Index">এইচটিএমএল</a></li>
+                        <li><a href="~/Css/Index">CSS</a></li>
+                        <li><a href="~/JavaScript/Index">Javascript</a></li>
+                        <li><a href="~/Jquery/Index">jQuery</a></li>
+                        <li><a href="~/AngularJs/Index">AngularJs</a></li>
+                        <li><a href="~/LearnHowTo/Index">Learn How To</a></li>
+                    </ul>
+                </nav>
+                <div class="toogle_icon_wrapper">
+                    <span><i class="fa fa-bars" onclick="toggleFunction();"></i></span>
+                </div>
+            </header>
+
+            <div class="sm_devices_menu">
+                <ul id="navbar">
+                    <li><a href="~/Html/Index" onclick="toggleFunction();">এইচটিএমএল</a></li>
+                    <li><a href="~/Css/Index" onclick="toggleFunction();">CSS</a></li>
+                    <li><a href="~/JavaScript/Index" onclick="toggleFunction();">Javascript</a></li>
+                    <li><a href="~/Jquery/Index" onclick="toggleFunction();">jQuery</a></li>
+                    <li><a href="~/AngularJs/Index" onclick="toggleFunction();">AngularJs</a></li>
+                    <li><a href="~/LearnHowTo/Index" onclick="toggleFunction();">Learn How To</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div class="container_wrapper" style="background: #fbfbfb; margin-top: 60px; ">
+        <div class="container_fixed fix">
+            @RenderBody()
+        </div>
+
+        <hr />
+    </div>
+    <div class="container_wrapper footerBg fix" style="margin-top: 0px;">
+        <div class="container_fixed fix">
+            <footer id="footer" class="">
+                <div>
+                    @DateTime.Now.Year &copy; WebSchools.com.bd
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+</html>

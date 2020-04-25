@@ -1,0 +1,111 @@
+﻿@using WebSchools.Models
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Areas/Content/Views/Shared/_Layout.cshtml";
+}
+<div class="blg_right" style="background: #fcfcfc">
+    @Html.Partial("~/Areas/Content/Views/Shared/_AdminTopMenu.cshtml", null)
+    @foreach (Article a in ViewBag.Articles)
+    {
+        <h4>Edit: </h4>
+        <a href="~/Content/article/EditArticle/@a.Id">@a.ArticleTitle</a>
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*<div class="section_wrapper">
+            @if (ViewBag.ProfileUpadationMessage != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.ProfileUpadationMessage
+                </div>
+            }
+            <div style="height: 600px;"></div>
+        </div>*@

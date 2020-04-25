@@ -1,0 +1,123 @@
+﻿@model WebSchools.Models.PriorExperience
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_D.cshtml";
+}
+<style>
+    body{
+        background: #fbfbfb;
+    }
+    #navMenuId{
+        display: none;
+    }
+    #topHamBurger{
+        border-bottom: 6px solid #ccc;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+</style>
+
+<div class="" style="text-align: center; margin-top: 40px;">
+    <h2>Prior Experience</h2>
+    <p>Get help from our developers.</p>
+</div>
+
+<div style="width: 80%; padding: 10px; margin: 50px auto 70px; border: 1px solid #ddd; padding-top: 40px;padding-right: 20px;border-radius: 5px;">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectIdea, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectIdea, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProjectIdea, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.ProjectCategory, new { htmlAttributes = new { @class = "form-control" } })*@
+                    
+                    <select id="categoryId" class="form-control">
+                        <option value="none">Select Category</option>
+                        <option value="WebDesign">Web Design</option>
+                        <option value="WebDevelopment">Web Development</option>
+                        <option value="Android">Android</option>
+                    </select>
+
+                    <input id="projectCategoryId" type="text" name="ProjectCategory" hidden/>
+                    @Html.ValidationMessageFor(model => model.ProjectCategory, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Problem, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Problem, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Problem, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script>
+        $(document).ready(function() {
+            $('#categoryId').change(function() {
+                var category = $('#categoryId option:selected').val();
+                $('#projectCategoryId').attr('value', category);
+            });
+
+            $('input[type="submit"]').click(function() {
+                if ($('#categoryId option:selected').val() == "none") {
+                    alert("Please select project category");
+                }
+            });
+        });
+    </script>
+}

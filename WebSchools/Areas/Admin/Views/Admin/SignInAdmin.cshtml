@@ -1,0 +1,56 @@
+﻿@using WebSchools.Models
+@model WebSchools.Models.Admin
+
+@{
+    ViewBag.Title = "Sign In Admin";
+    Layout = "~/Views/Shared/_D.cshtml";
+}
+
+@if (ViewBag.LoggedInError != null)
+{
+    <h2>@ViewBag.LoggedInError</h2>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Admin</h4>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-md-2">Admin Type</label>
+            <div class="col-md-10">
+                <select name="AdminType" class="form-control">
+                    <option value="-1">Select Your Panel</option>
+                    @foreach (AdminCategory admin in ViewBag.AdminTypes)
+                    {
+                        <option value="@admin.AdminType">@admin.AdminType</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Sign In" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

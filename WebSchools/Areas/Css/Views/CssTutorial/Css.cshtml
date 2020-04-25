@@ -1,0 +1,97 @@
+﻿@using WebSchools.Models
+@using WebSchools.Models.Css
+
+
+@{
+    ViewBag.Title = "CSS";
+    Layout = "~/Areas/Css/Views/Shared/_Css.cshtml";
+    CssIndex cssSingleIndex = ViewBag.CssIndex;
+}
+<style>
+    /*.cssProperties li{
+        padding:5px 0px;
+    }*/
+</style>
+<div class="section_wrapper fix">
+    <div class="articles_wrapper">
+        @if (ViewBag.NoArticles != null)
+        {
+            <div class="alert alert-success">
+                <h2>@ViewBag.NoArticles</h2>
+            </div>
+        }
+        else
+        {
+            int i = 1;
+            foreach (CssTutorial cssTutorial in ViewBag.CssTutorials)
+            {
+                if (cssTutorial.ActiveStatus)
+                {
+                    <div class="single_page_wrapper">
+                        @if (i == 1)
+                        {
+                            <section class="heading_description fix">
+                                <article>
+                                    <div>
+                                        <p>@Html.Raw(cssSingleIndex.MainHeadingDescription)</p>
+                                    </div>
+                                </article>
+                            </section>
+                            i = 2;
+                        }
+                        
+
+                        @if (cssTutorial.CssPropertyHeadingName != null)
+                        {
+                        <div>
+                            <h3>@cssTutorial.CssPropertyHeadingName</h3>
+                            @Html.Raw(cssTutorial.CssProperties)
+                        </div>
+                        }
+                        <section class="heading_description fix">
+                            <article>
+                                <div>
+                                    <h3 style="font-size: 20px; font-weight: 100;">@Html.Raw(cssTutorial.Heading)</h3>
+
+                                    <p>@Html.Raw(cssTutorial.Description)</p>
+                                </div>
+                            </article>
+                        </section>
+
+
+
+                        <section class="codeExampleWrapper fix">
+                            <div class="codeExampleHeading fix">
+                                <div class="float_left">
+                                    <h3>উদাহরণ</h3>
+                                </div>
+                            </div>
+                            <article class="codeExample fix">
+                                <div class="float_left copy_codes" style="width: 95%">
+                                    @Html.Raw(cssTutorial.Example)
+                                </div>
+                                <div class="float_right">
+                                    <span class="copy_button" title="Copy the code"><i class="fa fa-copy"></i></span>
+                                </div>
+
+                                <br />
+                                <a href="~/css/cssTutorial/tryIt/@cssTutorial.Id" class="try_it_button" target="_blank">এটি নিজে চেষ্টা করুন</a>
+                            </article>
+                        </section>
+
+
+                        <section>
+                            <article style="margin-top: 30px;">
+                                <div>
+                                    <h3>উদাহরণ ব্যাখ্যা</h3>
+                                    <p class="explanation">@Html.Raw(cssTutorial.Explanation)</p>
+                                </div>
+                            </article>
+                        </section>
+                    </div>
+                }
+
+            }
+        }
+    </div>
+</div>

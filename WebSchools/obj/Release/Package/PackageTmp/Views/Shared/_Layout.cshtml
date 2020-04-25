@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+    <link href="~/Content/Responsives.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-localScroll/2.0.0/jquery.localScroll.min.js"></script>
+
+    <script src="~/Scripts/Scripts.js"></script>
+</head>
+<body>
+    <div class="container_wrapper headerBg">
+        <div class="container_fixed">
+            <header>
+                <nav>
+                    <div class="topnav" id="myTopnav">
+                        <a href="~/Index/Index"><i class="fa fa-home"></i>@*<span style="font-size: 17px;">ওয়েবস্কুল</span>*@</a>
+                        <a href="~/Html/Index">এইচটিএমএল</a>
+                        <a href="~/Css/index">CSS</a>
+                        <a href="~/JavaScript/index">Javascript</a>
+                        <a href="~/Jquery/index">jQuery</a>
+                        <a href="~/AngularJs/index">AngularJs</a>
+                        <a href="~/LearnHowto/index">Learn How To</a>
+
+                        @*<div class="dropdown">
+                                <button class="dropbtn">
+                                    Dropdown
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="#">Link 1</a>
+                                    <a href="#">Link 2</a>
+                                    <a href="#">Link 3</a>
+                                </div>
+                            </div>
+                            <a href="#about">About</a>*@
+                        <a href="javascript:void(0);" style="font-size: 25px; margin-top: -15px" class="icon" onclick="myFunction()">&#9776;</a>
+                    </div>
+                </nav>
+            </header>
+
+        </div>
+    </div>
+
+<div style="clear: both;"></div>
+
+<div class="container_wrapper" style="background: #ddd;">
+    <div class="container_fixed fix">
+        @RenderBody()
+    </div>
+</div>
+
+<div class="container_wrapper footerBg fix" style="margin-top: 0px;">
+    <div class="container_fixed fix">
+        <footer id="footer" class="">
+            <div>
+                @DateTime.Now.Year &copy; WebSchools.com.bd
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+    
+</body>
+</html>

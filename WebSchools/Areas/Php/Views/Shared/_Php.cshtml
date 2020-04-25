@@ -1,0 +1,133 @@
+﻿@using WebSchools.Models.Php
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @{
+        string href = "~/php/phpTutorial/php/";
+        PhpIndex phpIndex = ViewBag.PhpSinglePage;
+    }
+</head>
+<body>
+    <div class="container_wrapper fix" id="innerPageZIndex">
+        <div class="" id="overlays">
+            <div class="tutorial_menu_wrap float_left fix">
+                <span class="page_resizer" title="Resize this page">&equiv;</span>
+                <div class="hide_on_resized">
+                    <ul class="tutorial_menu_list_header">
+                        <li><a href="~/index/index">&lArr; HOME</a></li>
+                        <li><h4 class="heading_current_page_indigator">PHP টিউটোরিয়াল</h4></li>
+                        <li style="padding: 0">
+                            <div class="custom_checkbox_lang"></div>
+                        </li>
+                        <li><input id="searchBoxId" type="text" placeholder="Search here" /></li>
+                    </ul>
+
+                    <aside>
+                        <ul class="tutorial_menu_list fix">
+                            @foreach (PhpIndex pi in ViewBag.PhpIndices)
+                            {
+                                if (phpIndex.Id == pi.Id)
+                                {
+                                    <li class="active"><a href="~/php/phpTutorial/php/@pi.Slug">@pi.Heading</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="~/php/phpTutorial/php/@pi.Slug">@pi.Heading</a></li>
+
+                                }
+                            }
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+        <div class="body_wrapper float_right fix" style="">
+            @Html.Partial("~/Views/Shared/_menus.cshtml", null)
+            <div class="under_nav fix" style="">
+                <span class="hide_lg_devices float_left" id="open_menu">
+                    <i class="fa fa-bars"></i>
+                </span>
+
+                <h4>@phpIndex.Heading</h4>
+
+            </div>
+            <div class="the_render_body" id="innerPageMarginBottom">
+                @RenderBody()
+                <section class="nextPrevSectionWrapper">
+                    <article class="nextPrevArticleWrapper">
+                        <div class="nextPrev">
+                            @{
+                                PhpIndex nextPage = ViewBag.NextPage;
+                                PhpIndex prevPage = ViewBag.PrevPage;
+                            }
+                            <a style="float: left" href="~/php/phpTutorial/php/@prevPage.Slug">Prev Page</a>
+                            <a style="float: right" href="~/php/phpTutorial/php/@nextPage.Slug">Next Page</a>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+    @Html.Partial("~/Views/Shared/_InnerPageFooter.cshtml", null)
+    <script>
+        $(document).ready(function() {
+            function menuItems(data) {
+                $.each(data,
+                    function(i, v) {
+                        var li = $('<li class=""></li>');
+                        li.append('<a class="" href="@Url.Content(href)' + v.Slug + '">' + v.Heading + '</a>');
+                        $('.tutorial_menu_list').append(li);
+
+                    });
+            }
+
+            $('#searchBoxId').keyup(function () {
+                var id = $(this).val();
+                var checkBoxVal = $('input[type="radio"]:checked').val();
+
+                if (checkBoxVal == "bangla") {
+                    $.ajax({
+                        url: '@Url.Action("GetJsIndicesByBanglaQuery", "PhpTutorial")',
+                        method: "GET",
+                        data: { id: id },
+                        dataType: "json",
+                        success: function(data) {
+                            $('.tutorial_menu_list').empty();
+                            menuItems(data);
+                        },
+                        error: function() {
+                            alert("Oops! There Is An Error");
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: '@Url.Action("GetPhpIndicesByEnglishQuery", "PhpTutorial")',
+                        method: "GET",
+                        data: { id: id },
+                        dataType: "json",
+                        success: function(data) {
+                            $('.tutorial_menu_list').empty();
+                            menuItems(data);
+                        },
+                        error: function() {
+                            alert("Oops! There Is An Error");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

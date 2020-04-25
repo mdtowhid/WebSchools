@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "JavaScript";
+}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-localScroll/2.0.0/jquery.localScroll.min.js"></script>
+    <script src="~/Scripts/Scripts.js"></script>
+</head>
+<body>
+    <div class="container_wrapper" style="min-height: 48px; z-index: 2; background: #fff">
+        <div class="container_fixed">
+            <header id="header">
+                <div class="float_left">
+                    <ul class="top_menu webschools_logo">
+                        <li><a href="#htmlId"><i class="fa fa-home"></i></a></li>
+                    </ul>
+                </div>
+                <div class="top_menu_webschool_middle_logo hide_lg_devices">
+                    <ul class="top_menu">
+                        <li><a href="~/Index/Index">ওয়েবস্কুলস.কম.বিডি</a></li>
+                    </ul>
+                </div>
+                <nav class="float_right hide_sm_devices">
+                    <ul class="top_menu">
+                        <li><a href="~/Html/HtmlTutorial/Index/"><span> <i class="fa fa-html5"></i></span> এইচটিএমএল</a></li>
+                        <li><a href="~/Css/CssTutorial/Index/">CSS <span> <i class="fa fa-css3"></i></span></a></li>
+                        <li><a href="~/JavaScript/JavaScriptTutorial/Index/">Javascript <span class="js_logo"><i class="fa fa-js-square"></i> JS</span></a></li>
+                        <li><a href="~/Jquery/JqueryTutorial/Index/">jQuery</a></li>
+                        <li><a href="~/HowTo/LearnHowto/Index/">Learn How To</a></li>
+                    </ul>
+                </nav>
+                <!-- Toggle Bars Icon #toogle_button-->
+                <div class="float_right hide_lg_devices">
+                    <ul class="top_menu" id="toogle_button">
+                        <li><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a></li>
+                    </ul>
+                </div>
+            </header>
+        </div>
+
+        <nav class="hide_lg_devices" style="background: white">
+            <ul class="top_menu_for_sm_devices" id="toggle_sm_top_menu" style="">
+                <li>
+                    <a href="~/Areas/Css/Views/Shared/ #htmlid">
+                        <span> <i class="fa fa-html5"></i></span> এইচটিএমএল
+                    </a>
+                </li>
+                <li><a href="#cssId">CSS <span> <i class="fa fa-css3"></i></span></a></li>
+                <li><a href="#javaScriptId">Javascript <span class="js_logo"><i class="fa fa-js-square"></i> JS</span></a></li>
+                <li><a href="#jQueryId">jQuery</a></li>
+                <li><a href="#angularJsId">AngularJs</a></li>
+                <li><a href="#howToId">Learn How To</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container_wrapper fix" style="background: #F9F9FA; color: #0C0C14; ">
+        <div class="" id="overlays">
+            <div class="tutorial_menu_wrap float_left fix">
+                <aside>
+                    <ul class="tutorial_menu_list fix">
+                        @*<li><h4 class="heading_current_page_indigator">Html Tutorial</h4></li>
+                            @foreach (Html html in ViewBag.Htmls)
+                            {
+                                if (htmlSinglePage.Id == html.Id)
+                                {
+                                    <li class="@htmlSinglePage.ActiveStatus"><a href="/Html/HtmlTutorial/Page/@html.Slug">@html.Heading</a></li>
+                                }
+                                else
+                                {
+                                    <li class=""><a href="/Html/HtmlTutorial/Page/@html.Slug">@html.Heading</a></li>
+                                }
+
+                            }*@
+                    </ul>
+                </aside>
+            </div>
+        </div>
+        <div class="body_wrapper float_right fix" style="">
+            <div class="under_nav fix" style="width: 100%">
+                <span class="hide_lg_devices float_left" id="open_menu">
+                    <i class="fa fa-bars"></i>
+                </span>
+
+                @*<h4>@htmlSinglePage.Heading</h4>*@
+
+            </div>
+            <div class="the_render_body">
+                @RenderBody()
+            </div>
+            <hr />
+            <section style="width: 98%; margin: 0 auto;">
+                <article>
+                    <div class="nextPrev">
+                        @*@Html.ActionLink("Previous", "PreviousPage", "HtmlTutorial", new { id = htmlSinglePage.Id }, new { @class = "float_left btn btn-sm btn-primary" })
+                            @Html.ActionLink("Next", "NextPage", "HtmlTutorial", new { id = htmlSinglePage.Id }, new { @class = "float_right btn btn-sm btn-primary" })*@
+                    </div>
+                </article>
+            </section>
+            <hr />
+            <div class="footerBg">
+                <footer id="footer">
+                    <div>
+                        @DateTime.Now.Year &copy; WebSchools.com.bd
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

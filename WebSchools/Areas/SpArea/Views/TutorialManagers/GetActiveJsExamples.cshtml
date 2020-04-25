@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebSchools.Models.JavaScript.JavaScriptExample>
+
+@{
+    ViewBag.Title = "Active Js Examples";
+    Layout = "~/Areas/SpArea/Views/Shared/_SpArea.cshtml";
+}
+<div class="sp_right fix">
+    @Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+    <h2>Active Js Examples</h2>
+
+    <table class="table table-striped table-condensed table-bordered table-responsive  table-sm">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JavaScriptIndex.MainHeadingDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubHeading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Example)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdminId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JavaScriptIndex.MainHeadingDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActiveStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubHeading)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Example)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdminId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    <a href="~/spArea/tutorialManagers/editJsExample/@item.Id"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

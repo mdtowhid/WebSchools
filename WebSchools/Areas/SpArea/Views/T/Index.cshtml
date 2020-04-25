@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "SP Admin";
+    Layout = "~/Areas/SpArea/Views/Shared/_SpArea.cshtml";
+}
+
+<div class="sp_right fix">
+    @Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+    <h1>Welcome! @Session["FullName"] </h1>
+</div>
+
+

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="container_wrapper fix">
+        <div class="sp_left fix">
+            <div class="sp_left_header">
+                <h3>Dashboards <span class="float_right remove_width" style="font-weight: bold;font-size: 1.3em; margin-top: -8px; color: red;cursor: pointer">&times;</span></h3>
+            </div>
+            <button class="acc_btn">Create Index</button>
+            <ul class="sp_index_menu">
+                <li><a href="~/spArea/t/index/">SP Home</a></li>
+                <li><a href="~/spArea/t/getHtmlIndices">HTML Indices</a></li>
+                <li><a href="~/spArea/t/getCssIndices">CSS Indices</a></li>
+                <li><a href="~/spArea/t/getJsIndices">JS Indices</a></li>
+                <li><a href="~/spArea/t/getJqIndices">JQ Indices</a></li>
+                <li><a href="~/spArea/t/getSqlIndices">SQL Indices</a></li>
+                <li><a href="~/spArea/t/getPhpIndices">PHP Indices</a></li>
+            </ul>
+            
+
+
+            <button class="acc_btn" style="margin-top: -10px">User Manager</button>
+            <ul class="sp_index_menu">
+                <li><a href="~/spArea/adminManager/index/">Admin Home</a></li>
+                <li><a href="~/spArea/adminManager/GetAdminCategories/">Admin Categories</a></li>
+                <li><a href="~/spArea/adminManager/getAdmins/">Admins</a></li>
+            </ul>
+
+            <button class="acc_btn" style="margin-top: -10px">Tutorials Manager</button>
+            <ul class="sp_index_menu">
+                <li><a href="~/spArea/tutorialManagers/index/">Managers</a></li>
+            </ul>
+
+        </div>
+        @RenderBody()
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.acc_btn').click(function() {
+                $('.acc_btn').removeClass('active');
+                $(this).toggleClass('active');
+
+                var elem = $(this).next();
+                elem.toggleClass('active');
+            }); 
+            $('.cntrl_toggling_btn').click(function() {
+                $('.sp_left').animate({
+                    width: '250px'
+                }, 200);
+            });
+            $('.remove_width').click(function () {
+                $('.sp_left').animate({
+                    width: '0'
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

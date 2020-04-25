@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebSchools.Models.Jquery.JqueryIndex>
+
+@{
+    ViewBag.Title = "JqIndices";
+    Layout = "~/Areas/SpArea/Views/Shared/_SpArea.cshtml";
+}
+<div class="sp_right fix">
+
+
+    @Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+
+    <p>
+        @Html.ActionLink("Add New JQ Index", "CreateJqIndex")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MainHeadingDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Heading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuDivider)
+            </th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MainHeadingDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Heading)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActiveStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuDivider)
+                </td>
+                <td>
+                    <a href="~/spArea/t/editJqIndex/@item.Id"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

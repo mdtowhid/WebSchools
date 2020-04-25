@@ -1,0 +1,69 @@
+﻿@using WebSchools.Models
+@using WebSchools.Models.Html
+
+@{
+    ViewBag.Title = "HTML";
+    Layout = "~/Areas/Html/Views/Shared/_Layout.cshtml";
+}
+<div class="section_wrapper">
+    <div class="articles_wrapper">
+        @if (ViewBag.NoneHtmlTutorials != null)
+        {
+            <div class="alert alert-success">
+                <h2>@ViewBag.NoneHtmlTutorials</h2>
+            </div>
+        }
+        else
+        {
+            int i = 1;
+            foreach (HtmlTutorial htmlTutorial in ViewBag.HtmlTutorials)
+            {
+                
+                if (htmlTutorial.ActiveStatus)
+                {
+                    <div class="single_page_wrapper">
+                        <section class="heading_description fix">
+                            <article>
+                                <div>
+                                    <h3 style="font-size: 20px; font-weight: 100;">@Html.Raw(htmlTutorial.Heading)</h3>
+                                    <p>@Html.Raw(htmlTutorial.Description)</p>
+                                </div>
+                            </article>
+                        </section>
+
+                        <section class="codeExampleWrapper fix">
+                            <div class="codeExampleHeading fix">
+                                <div class="float_left">
+                                    <h3>উদাহরণ</h3>
+                                </div>
+                            </div>
+                            <article class="codeExample fix">
+                                <div class="float_left copy_codes" style="width: 95%">
+                                    @Html.Raw(htmlTutorial.Example)
+
+                                    <a href="~/html/htmlTutorial/tryIt/@htmlTutorial.Id" class="try_it_button" target="_blank">এটি নিজে চেষ্টা করুন</a>
+                                </div>
+                                <div class="float_right">
+                                    <span class="copy_button" title="Copy the code"><i class="fa fa-copy"></i></span>
+                                </div>
+                            </article>
+                        </section>
+
+                        <section class="example_output_explain">
+                            <article class="example_output">
+                                <h3>উদাহরণ Output</h3>
+                                <div style="margin-top: 17px;">
+                                    @Html.Raw(htmlTutorial.Example)
+                                </div>
+                            </article>
+                            <article class="example_explain">
+                                <h3>উদাহরণ ব্যাখ্যা</h3>
+                                <p class="explanation">@Html.Raw(htmlTutorial.Explanation)</p>
+                            </article>
+                        </section>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>

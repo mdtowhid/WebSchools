@@ -1,0 +1,278 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/SpArea/Views/Shared/_SpArea.cshtml";
+}
+
+<div class="sp_right fix">
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="text-muted">HTML Inactive</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getInactiveHtmlTutorials/" class="btn btn-sm btn-primary" target="_blank">HTML Inactive Tutorials <span class="badge badge-primary">@ViewBag.HtmlInactiveTutorialsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="">HTML Active</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getActiveHtmlTutorials/" class="btn btn-sm btn-primary" target="_blank">HTML Active Tutorials <span class="badge badge-primary">@ViewBag.HtmlActiveTutorialsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--:::::::::::::::::::::::::::-->
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="text-muted">CSS Inactive</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getInactiveCssTutorials/" class="btn btn-sm btn-primary" target="_blank">CSS Inactive Tutorials <span class="badge badge-primary">@ViewBag.CssInActiveTutorialsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="">CSS Active</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getActiveCssTutorials/" class="btn btn-sm btn-primary" target="_blank">CSS Active Tutorials <span class="badge badge-primary">@ViewBag.CssActiveTutorialsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="text-muted">JS Inactive</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getInactiveJsTutorials/" class="btn btn-sm btn-primary" target="_blank">JS Inactive Tutorials <span class="badge badge-primary">@ViewBag.JsInActiveTutsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="">JS Active</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getActiveJsTutorials/" class="btn btn-sm btn-primary" target="_blank">JS Active Tutorials <span class="badge badge-primary">@ViewBag.JsActiveTutsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--:::::::::::::::::::::::::::-->
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="text-muted">JS Inactive Examp.</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getInactiveJsExamples/" class="btn btn-sm btn-primary" target="_blank">CSS Inactive Tutorials <span class="badge badge-primary">@ViewBag.jsInActiveExCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="">JS Active Examp.</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card Examp.</p>
+                        <a href="~/spArea/tutorialManagers/getActiveJsExamples/" class="btn btn-sm btn-primary" target="_blank">CSS Active Tutorials <span class="badge badge-primary">@ViewBag.jsActiveExCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="text-muted">JQ Inactive</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getInactiveJqTutorials/" class="btn btn-sm btn-primary" target="_blank">JQ Inactive Tutorials <span class="badge badge-primary">@ViewBag.JqInActiveTutsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="">JQ Active</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getActiveJqTutorials/" class="btn btn-sm btn-primary" target="_blank">JQ Active Tutorials <span class="badge badge-primary">@ViewBag.JqActiveTutsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--:::::::::::::::::::::::::::-->
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="text-muted">JQ Inactive Examp.</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getInactiveJqExamples/" class="btn btn-sm btn-primary" target="_blank">JQ Inactive Tutorials <span class="badge badge-primary">@ViewBag.JqInActiveExCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="">JQ Active Examp.</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card Examp.</p>
+                        <a href="~/spArea/tutorialManagers/getActiveJqExamples/" class="btn btn-sm btn-primary" target="_blank">JQ Active Tutorials <span class="badge badge-primary">@ViewBag.jqActiveExCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h4 class="text-muted">SQL Inactive Syntax Boxes</h4>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getInactiveSyntaxBoxes/" class="btn btn-sm btn-primary" target="_blank">SQL Inactive SynBoxes <span class="badge badge-primary">@ViewBag.sqlInActiveSynBoxesCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h4 class="">SQL Active Syntax Boxes</h4>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getActiveSyntaxBoxes/" class="btn btn-sm btn-primary" target="_blank">SQL Active SynBoxes <span class="badge badge-primary">@ViewBag.sqlActiveSynBoxesCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--:::::::::::::::::::::::::::-->
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="text-muted">SQL Inactive Examp.</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getInactiveSqlExamples/" class="btn btn-sm btn-primary" target="_blank">SQL Inactive Examples <span class="badge badge-primary">@ViewBag.sqlInactiveExCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h3 class="">SQL Active Examp.</h3>
+                    <div class="card-body">
+                        <p class="card-text">Some Card Examp.</p>
+                        <a href="~/spArea/tutorialManagers/getActiveSqlExamples/" class="btn btn-sm btn-primary" target="_blank">SQL Active Examples <span class="badge badge-primary">@ViewBag.sqlActiveExCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h4 class="text-muted">PHP Inactive</h4>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getInactivePhpTutorials/" class="btn btn-sm btn-primary" target="_blank">PHP Inactive Tutorials <span class="badge badge-primary">@ViewBag.phpInActiveTutsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h4 class="">PHP Active</h4>
+                    <div class="card-body">
+                        <p class="card-text">Some Card text</p>
+                        <a href="~/spArea/tutorialManagers/getActivePhpTutorials/" class="btn btn-sm btn-primary" target="_blank">PHP Active Tutorials<span class="badge badge-primary">@ViewBag.phpActiveTutsCounter</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card_custom">
+                <div class="icon_text">
+                    <h4 class="alert-heading">ICT</h4>
+                    <div class="card-body">
+                        <p class="card-text">ICT WORLD!</p>
+                        <a href="#" class="btn btn-sm btn-primary">ICT Tutorials<span class="badge badge-primary"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

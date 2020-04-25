@@ -1,0 +1,465 @@
+﻿@{
+    ViewBag.Title = "About Me";
+    Layout = "~/Views/Shared/_test.cshtml";
+}
+<style>
+    #topHamBurger {
+        /*border-bottom: 5px solid #ccc;*/
+    }
+
+    #navMenuId {
+        display: none;
+    }
+
+    body {
+        background: linear-gradient(to right, #303D46, #1EAEDB);
+    }
+
+    #topHamBurger {
+        /* border-bottom: 5px solid #ccc; */
+        position: sticky;
+        top: 0;
+        z-index: 999999999;
+    }
+
+    .top_box {
+        background: linear-gradient(to right, #303D46, #1EAEDB);
+    }
+</style>
+
+<div class="meMenu fix">
+    <ul>
+        <li class="active"><a href="#aboutId"><span class="me_icon">A</span><br />About</a></li>
+        <li><a href="#resumeId"><span class="me_icon">R</span><br />Resume</a></li>
+        <li><a href="#workId"><span class="me_icon">W</span><br />Works</a></li>
+        <li><a href="#blogId"><span class="me_icon">B</span><br />Blog</a></li>
+        <li><a href="#contactId"><span class="me_icon">C</span><br />Contact</a></li>
+    </ul>
+</div>
+
+<div class="container_wrapper fix">
+    <div class="container_fixed fix">
+        <div class="me_middle fix">
+
+            <div class="mePicWithDetails fix">
+                <div class="meBacgroundImg">
+
+                </div>
+
+                <div class="me_img_box_wrapper">
+                    <div class="meImgBox">
+                        <img src="~/Images/me.jpg" />
+                    </div>
+                </div>
+
+
+                <div class="meDetails">
+                    <h3>Md Towhidul Islam</h3>
+                    <p>Web Developer</p>
+                    <ul class="me_social_menu">
+                        <li><a href="javascript:void">F</a></li>
+                        <li><a href="javascript:void">T</a></li>
+                        <li><a href="javascript:void">G</a></li>
+                        <li><a href="javascript:void">L</a></li>
+                        <li><a href="javascript:void">G</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="meFullDetails active" id="aboutId">
+                <div class="about_me">
+                    <div class="fix">
+                        <h3>About Me</h3>
+                        <p>
+                            I am Mohammad Towhidul Islam, web designer & web developer from Bangladesh.
+                            I have rich experience in web site design and building and customization, also
+                            I am good at .Net framework. I love to talk with you about my unique.
+                        </p>
+
+                        <div class="me_left_ditails float_left">
+                            <ul>
+                                <li><b>Age</b>.....23</li>
+                                <li><b>FREELANCE</b>.....Available</li>
+                            </ul>
+                        </div>
+
+                        <div class="me_right_ditails float_right">
+                            <ul>
+                                <li><b>Residance</b>.....Bangladesh</li>
+                                <li><b>Address</b>.....Chittagong,<br /> Bangladesh</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="my_services fix">
+                    <h3>My Services</h3>
+                    <hr />
+                    <div class="my_services_box web_design">
+                        <span class="my_service_icon"><></span>
+                        <h4>web Design</h4>
+                        <p>
+                            Modern, eye-cathing and highly responsive website that will help you reach all of your marketting.
+                        </p>
+                    </div>
+
+                    <div class="my_services_box">
+                        <span class="my_service_icon">/\</span>
+                        <h4>web development</h4>
+                        <p>
+                            Modern & mobile-ready website that will help you reach all of your marketting.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meFullDetails fix" id="resumeId">
+                <div class="my_resume">
+                    <h3 class="">Resume</h3>
+                    <div class="me_resume_left float_left fix">
+                        <div class="resume_box fix">
+                            <div class="exprience_details_box">
+                                <h4><span class="my_resume_icon">E </span>Experience</h4>
+                                <div class="exp_details">
+                                    <span class="exp_date">2017 - PRESENT</span>
+                                    <h5>Web Developer</h5>
+                                    <p style="opacity: .6">WEBSCHOOLS</p>
+                                    <p>
+                                        Collaborate with creative and development teams the executioin idea.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="resume_box fix">
+                            <div class="exprience_details_box">
+                                <div class="exp_details">
+                                    <span class="exp_date">2017 - PRESENT</span>
+                                    <h5>Front-End Developer</h5>
+                                    <p style="opacity: .6">------</p>
+                                    <p>
+                                        Monitor Technical aspects of the front-end delivery for several projects.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="me_resume_right float_left fix">
+                        <div class="resume_box fix ed">
+                            <div class="exprience_details_box">
+                                <h4><span class="my_resume_icon">E </span>EDUCATION</h4>
+                                <div class="exp_details">
+                                    <span class="exp_date">2015 - PRESENT</span>
+                                    <h5>Premier University</h5>
+                                    <p style="opacity: .6">Chittagong</p>
+                                    <p>
+                                        Bachelor's Degree in Computer Science in Ingineering.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="resume_box fix ed">
+                            <div class="exprience_details_box">
+                                <div class="exp_details">
+                                    <span class="exp_date">2017 - 2018</span>
+                                    <h5>.Net Framework</h5>
+                                    <p style="opacity: .6">BITM</p>
+                                    <p>
+                                        .Net Framework, C#, CSS, JavaScript, jQuery, SQL, LINQ, including (Entity framework, Bootstrap framework).
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meFullDetails fix" id="workId">
+                <div class="recent_work_top fix">
+                    <div class="recent_wrok_header fix float_left">
+                        <h3>Recent Works</h3>
+                    </div>
+                    <div class="recent_wrok_menu fix float_right">
+                        <ul>
+                            <li class="active">All</li>
+                            <li>Web Design</li>
+                            <li>Web Development</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="recent_works">
+                    <div class="recent_w_box web_design_tabs">
+                        <img src="~/Images/b1.jpg" />
+                        <div class="recent_w_details">
+                            <h4>PUSB IEEE Website</h4>
+                            <span>Premier University</span>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="recent_w_box dev_tabs">
+                        <img src="~/Images/p1.jpg" />
+                        <div class="recent_w_details">
+                            <h4>Lab. Management Web App.</h4>
+                            <span>Ingenuity</span>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="recent_w_box web_design_tabs">
+                        <img src="~/Images/b1.jpg" />
+                        <div class="recent_w_details">
+                            <h4>Farmers savings</h4>
+                            <span>Southern University</span>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="recent_w_box web_design_tabs">
+                        <img src="~/Images/p1.jpg" />
+                        <div class="recent_w_details">
+                            <h4>HR Management System</h4>
+                            <span>-------------</span>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
+                    </div>
+
+                    @*<div class="recent_w_box" title="More Coming!">
+                            <div class="recent_w_details">
+                                <h3 class="recent_w_box_coming">+</h3>
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+
+            <div class="meFullDetails fix" id="blogId">
+                <div class="my_blog_top">
+                    <h3>My Blog</h3>
+                </div>
+
+                <div class="blog_detais_box fix">
+                    <div class="blog_box">
+                        <img src="~/Images/p1.jpg" />
+                        <div class="blog_publised_date">
+                            <h2>14</h2>
+                            <p>APR</p>
+                        </div>
+                        <div class="blog_caption_bottom">
+                            <h4>History of React.js</h4>
+                            <p>React.js</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog_detais_box fix">
+                    <div class="blog_box">
+                        <img src="~/Images/b1.jpg" />
+                        <div class="blog_publised_date">
+                            <h2>18</h2>
+                            <p>APR</p>
+                        </div>
+                        <div class="blog_caption_bottom">
+                            <h4>A simle description on AngularJS</h4>
+                            <p>Angularjs</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="blog_detais_box fix">
+                    <div class="blog_box">
+                        <img src="~/Images/img_sailboat.jpg" />
+                        <div class="blog_publised_date">
+                            <h2>29</h2>
+                            <p>APR</p>
+                        </div>
+                        <div class="blog_caption_bottom">
+                            <h4>Description on jquery function</h4>
+                            <p>jquery</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="blog_detais_box fix">
+                    <div class="blog_box">
+                        <img src="~/Images/p1.jpg" />
+                        <div class="blog_publised_date">
+                            <h2>02</h2>
+                            <p>MARCH</p>
+                        </div>
+                        <div class="blog_caption_bottom">
+                            <h4>Ecmascipt 6 arrow function.</h4>
+                            <p>Ecmascipt 6</p>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+            </div>
+
+            <div class="meFullDetails fix" id="contactId">
+                <div class="contact_top fix">
+                    <h3>Get in Tuch</h3>
+                </div>
+
+                <div class="contact_details_wrap fix">
+
+                    <div class="google_map">
+                        <h4 style="text-align: center;margin-top: 78px;font-size: 27px;opacity: .5;">Google Map!</h4>
+                    </div>
+                    <div class="contact_details fix">
+                        <div class="me_left_ditails float_left">
+                            <ul>
+                                <li><b>Age</b>.....23</li>
+                                <li><b>FREELANCE</b>.....Available</li>
+                            </ul>
+                        </div>
+
+                        <div class="me_right_ditails float_right">
+                            <ul>
+                                <li><b>Residance</b>.....Bangladesh</li>
+                                <li><b>Address</b>.....Chittagong,<br /> Bangladesh</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="contact_form fix">
+                        <h3>Contact Me</h3>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @*@Html.HiddenFor(model => model.Id)*@
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <input type="text" name="Name" placeholder="Your name" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <input type="text" name="Email" placeholder="Email" class="form-control" />
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" name="Contact number" placeholder="ContactNumber" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="submit" value="Save" class="btn btn-default" />
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+
+            });
+            $(document).ready(function () {
+                $('.meMenu ul li').click(function () {
+                    $('.meMenu ul li').removeClass('active');
+                    $(this).addClass('active');
+
+                    const removeActiveClass = () => {
+                        $('.meFullDetails').removeClass('active');
+                    }
+
+                    const checkWindowSize = () => {
+
+                        if ($(document).width() <= 800) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+
+                    var text = $(this).text();
+                    if (!checkWindowSize()) {
+                        if (text == "AAbout") {
+                            removeActiveClass();
+                            $('#aboutId').addClass('active');
+                        } else if (text == "RResume") {
+                            removeActiveClass();
+                            $('#resumeId').addClass('active');
+                        } else if (text == "WWorks") {
+                            removeActiveClass();
+                            $('#workId').addClass('active');
+                        } else if (text == "BBlog") {
+                            removeActiveClass();
+                            $('#blogId').addClass('active');
+                        } else if (text == "CContact") {
+                            removeActiveClass();
+                            $('#contactId').addClass('active');
+                        }
+                    } else {
+                        removeActiveClass();
+                    }
+
+
+                    //recentWork Tab
+                    const removeActiveClassForRecentWork = () => {
+                        $('.recent_w_box, .web_design_tabs, .dev_tabs').removeClass('active');
+                    }
+
+
+
+                    $('.recent_wrok_menu ul li').click(function () {
+                        $('.recent_wrok_menu ul li').removeClass('active');
+                        $(this).addClass('active');
+                        var liText = $(this).text();
+                        var recentWorkBox = $('.recent_w_box');
+
+                        if (liText == 'All') {
+                            removeActiveClassForRecentWork();
+                        } else if (liText == 'Web Design') {
+                            removeActiveClassForRecentWork();
+                            $('.dev_tabs').addClass('active');
+                        } else if (liText == 'Web Development') {
+                            removeActiveClassForRecentWork();
+                            $('.web_design_tabs').addClass('active');
+                        }
+                    });
+
+
+
+
+                });
+            });
+        </script>
+
+    </div>
+</div>

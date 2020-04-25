@@ -1,0 +1,32 @@
+﻿@model WebSchools.Models.BlogVm.BlogContent
+@{
+    ViewBag.Title = "ContinueReading";
+    Layout = "~/Views/Shared/_blog.cshtml";
+    string imgUrl = Model.ImageUrl;
+}
+
+
+<div class="continue_reading_blog_wrapper fix">
+    <span onclick="goBack()" class="prev_bc_page">&larr;</span>
+    @*<h2>Blog On: @Html.DisplayFor(x => x.BlogCategory.BlogCategoryName)</h2>*@
+
+    <div class="cnt_blog_images float_left fix">
+        <img src="~/UpImages/@Url.Content(imgUrl)" class="img-thumbnail img-responsive"/>
+    </div>
+    <div class="cont_blog_contents float_right fix img-thumbnail">
+        <p><b>Category: @Html.DisplayFor(x => x.BlogCategory.BlogCategoryName)</b></p>
+        <h2 style="opacity: .6;">@Html.DisplayFor(x => x.BlogHeading)</h2>
+        <p style="opacity: .6;">posted by: @Html.DisplayFor(x => x.PostedBy)</p>
+        <h5>Date: <span>@Html.DisplayFor(x => x.Date)</span></h5>
+
+        <p>@Html.DisplayFor(x => x.BlogDesc)</p>
+    </div>
+
+</div>
+
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

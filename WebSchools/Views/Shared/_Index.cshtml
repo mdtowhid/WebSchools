@@ -1,0 +1,522 @@
+﻿﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @using Microsoft.Ajax.Utilities    @model WebSchools.Models.Registration
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .top_menu_for_sm_devices {
+            border-bottom: none;
+            border-top: none;
+        }
+
+            .top_menu_for_sm_devices li a {
+            }
+
+        .overlay {
+            margin-top: 48px;
+        }
+
+        #nevigateToLogInFormLink, #nevigateToSignupFormLink {
+            cursor: pointer;
+            display: inline-block;
+            color: blue;
+        }
+
+            #nevigateToLogInFormLink:hover, #nevigateToSignupFormLink:hover {
+                text-decoration: underline;
+            }
+
+        a, a:hover {
+            text-decoration: none;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-localScroll/2.0.0/jquery.localScroll.min.js"></script>
+
+</head>
+<body>
+    <div class="container_wrapper under_nav" style="min-height: 48px; z-index: 2; background: #fff">
+        <div class="container_fixed">
+            <header id="header">
+                <div class="float_left">
+                    <ul class="top_menu webschools_logo">
+                        <li id="loginSignUpFormToggleButtonId1" class="hide_lg_devices"><a href="javascript:void(0)"><span><i class="fa fa-user-o"></i></span></a></li>
+                        <li class="hide_sm_devices"><a href="#"><i class="fa fa-home"></i></a></li>
+                    </ul>
+                </div>
+                <div class="top_menu_webschool_middle_logo hide_lg_devices">
+                    <ul class="top_menu">
+                        <li><a href="~/Index/Index">ওয়েবস্কুলস.কম.বিডি</a></li>
+                    </ul>
+                </div>
+                <nav class="float_right hide_sm_devices">
+                    <ul class="top_menu">
+                        <li class="active"><a href="#htmlId"><span> <i class="fa fa-html5"></i></span> এইচটিএমএল</a></li>
+                        <li><a href="#cssId">CSS <span> <i class="fa fa-css3"></i></span></a></li>
+                        <li><a href="#javaScriptId">Javascript <span class="js_logo"><i class="fa fa-js-square"></i> JS</span></a></li>
+                        <li><a href="#jQueryId">jQuery</a></li>
+                        <li><a href="#howToId">Learn How To</a></li>
+                        <li id="loginSignUpFormToggleButtonId"><a href="javascript:void(0)"><span><i class="fa fa-user-o"></i></span> Log in</a></li>
+                    </ul>
+                </nav>
+                <!-- Toggle Bars Icon #toogle_button-->
+                <div class="float_right hide_lg_devices">
+                    <ul class="top_menu">
+                        <li id="toogle_button"><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a></li>
+                    </ul>
+                </div>
+            </header>
+        </div>
+        <div class="overlay">
+            <nav class="hide_lg_devices" style="">
+                <ul class="top_menu_for_sm_devices" id="toggle_sm_top_menu" style="background: #fff;">
+                    <li><a href="#htmlId"><span> <i class="fa fa-html5"></i></span> এইচটিএমএল</a></li>
+                    <li><a href="#cssId">CSS <span> <i class="fa fa-css3"></i></span></a></li>
+                    <li><a href="#javaScriptId">Javascript <span class="js_logo"><i class="fa fa-js-square"></i> JS</span></a></li>
+                    <li><a href="#jQueryId">jQuery</a></li>
+                    <li><a href="#howToId">Learn How To</a></li>
+                </ul>
+
+            </nav>
+        </div>
+
+        <div class="overlay1 fix" id="myModal" style="width: 100%">
+            <div class="logIn_signUp_form_wrapper">
+                <span id="cancel">&times;</span>
+
+                <ul class="tabs fix">
+                    <li class="current_tab" id="tab1">Register</li>
+                    <li id="tab2">Sign In</li>
+                </ul>
+
+                <div class="signUp_form_wrapper">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div id="divCreateAccountStatus"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.UserName, new { placeholder = "User Name", @class = "form-control", @id = "userName" })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "velidationError", @id = "userNameError" })
+                                    <div id="output"></div>
+                                    <div id="availableUserNames"></div><a id="linkavailableUserNames" href="#"></a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.Email, new { placeholder = "example@gmail.com", @class = "form-control", @id = "email" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "velidationError", @id = "emailError" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.PasswordFor(model => model.Password, new { placeholder = "New Password", @class = "form-control", @id = "password" })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "velidationError", @id = "passwordError" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.PasswordFor(model => model.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control", @id = "confirmPassword" })
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "velidationError", @id = "confirmPasswordError" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 checkboxes">
+                                    <label> <input type="radio" name="signUpFormRadio" class="radio" value="asContentWritter" /> As a Content Writter</label>
+                                    <label> <input type="radio" name="signUpFormRadio" class="radio" value="asTeacher" /> As a Teacher</label>
+                                    <label> <input type="radio" name="signUpFormRadio" class="radio" value="asStudent" /> As a Student</label>
+
+                                    <label> <input type="radio" name="signUpFormRadio" class="radio" value="asVisitors" /> As a Visitors</label>
+                                    <div id="checkedErrorRadio" style="color: red"></div>
+                                </div>
+                            </div>
+
+
+                            @Html.ValidationMessageFor(model => model.RegistrationStatus, "", new { @class = "velidationError", @id = "registrationStatus" })
+                            <input type="text" name="RegistrationStatus" id="chekedRegistrationStatusForSignUp" hidden style="height: 0;" />
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="submit" id="signUp" value="Register" class="btn btn-success btn-sm" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="logIn_form_wrapper fix">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div id="divLoginError"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" name="Email" id="loginEmail" class="form-control" placeholder="Email" />
+                                <div class="error"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="password" id="loginPassword" name="Password" class="form-control" placeholder="Password" />
+                                <div class="error"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>@Html.CheckBoxFor(x => x.RememberMe) Remember Me</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 checkboxes">
+                                <label style="font-weight: 400">Select as sign up</label>
+                                <label> <input type="radio" name="logInFormRadio" class="radioForLogIn" value="asContentWritter" /> As a Content Writter</label>
+                                <label> <input type="radio" name="logInFormRadio" class="radioForLogIn" value="asTeacher" /> As a Teacher</label>
+                                <label> <input type="radio" name="logInFormRadio" class="radioForLogIn" value="asStudent" /> As a Student</label>
+                                <label> <input type="radio" name="logInFormRadio" class="radioForLogIn" value="asVisitors" /> As a Visitors</label>
+                                <div id="checkedErrorRadioForLogIn" style="color: red"></div>
+                            </div>
+                        </div>
+                        <input type="text" name="RegistrationStatus" id="chekedRegistrationStatusForLogIn" hidden />
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="submit" id="login" value="Sign In" class="btn btn-success btn-sm" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @if (ViewBag.Error != null)
+                                {
+                                    <div class="alert alert-danger">
+                                        @Html.Raw(@ViewBag.Error)
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container_wrapper fix">
+        @RenderBody()
+    </div>
+    @*<div class="">
+            <div class="gotoTop">
+                <span class="scrollTop"><i class="fa fa-arrow-up" aria-hidden="true"></i></span>
+            </div>
+        </div>*@
+
+    <div class="container_wrapper fix">
+        <div class="social_wrapper fix">
+            <ul class="social_menu">
+                <li><a href="https://www.facebook.com/md.towhid.7583" target="_blank"><span><i class="fa fa-facebook-square"></i></span></a></li>
+                <li><a href="https://www.facebook.com/md.towhid.7583" target="_blank"><span><i class="fa fa-linkedin"></i></span></a></li>
+                <li><a href="https://www.facebook.com/md.towhid.7583" target="_blank"><span><i class="fa fa-google-plus"></i></span></a></li>
+                <li><a href="https://www.facebook.com/md.towhid.7583" target="_blank"><span><i class="fa fa-twitter-square"></i></span></a></li>
+                <li><a href="https://www.facebook.com/md.towhid.7583" target="_blank"><span><i class="fa fa-instagram"></i></span></a></li>
+            </ul>
+        </div>
+
+        <nav class="footer_nav_wrapper fix">
+            <div class="footer_fixed">
+                <ul class="footer_menu float_left">
+                    <li>
+                        <p>WebSchool</p>
+                    </li>
+                    <li><a href="javascript:void(0)">Home page</a></li>
+                    <li><a href="javascript:void(0)">Webschool Template</a></li>
+                </ul>
+                <ul class="footer_menu float_left">
+                    <li>
+                        <p>WebSchool Tutorials</p>
+                    </li>
+                    <li><a href="javascript:void(0)">HTML</a></li>
+                    <li><a href="javascript:void(0)">CSS</a></li>
+                    <li><a href="javascript:void(0)">Javascript</a></li>
+                    <li><a href="javascript:void(0)">jQuery</a></li>
+                    <li><a href="javascript:void(0)">SQL</a></li>
+                    <li><a href="javascript:void(0)">C#</a></li>
+                    <li><a href="javascript:void(0)">ASP.NET</a></li>
+                </ul>
+                <ul class="footer_menu float_left">
+                    <li>
+                        <p>Other</p>
+                    </li>
+                    <li><a href="https://www.facebook.com/md.towhid.7583" target="_blank">About Me</a></li>
+                </ul>
+                <ul class="footer_menu float_left">
+                    <li>
+                        <p>Legal/Contact</p>
+                    </li>
+                    <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                    <li><a href="javascript:void(0)">newtowhid1232@gmail.com</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="footer_copy_right fix">
+            <div class="footer_fixed end_footer" style="margin-top: 50px;">
+                <p>My Vision is to</p>
+                <h3>Making website more easier for you.</h3>
+                <span></span>
+                <p>Chittagong</p>
+                <p>Chittagong-400, Bangladesh</p>
+                <p>Copyright &copy; @DateTime.Now.Year WebSchools.com.bd All right reserved</p>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var floatingDiv = $('.under_nav');
+            var floatingDivPosition = floatingDiv.position();
+            var signUpFormWrapper = $('.signUp_form_wrapper');
+            var logInFormWrapper = $('.logIn_form_wrapper');
+            var logInSignUpFormWrapper = $('.logIn_signUp_form_wrapper');
+            var loginSignUpButton = $('#loginSignUpFormToggleButtonId');
+            var loginSignUpButton1 = $('#loginSignUpFormToggleButtonId1');
+            var modal = $('#myModal');
+
+            // Start of Regis + sign up forms tabs
+            signUpFormWrapper.show();
+            logInFormWrapper.hide();
+            $('#cancel').click(function () {
+                modal.fadeOut("slow");
+            });
+
+            $('.tabs li').on({
+                'click': function () {
+                    $(this).siblings().removeClass('current_tab');
+                    $(this).addClass('current_tab');
+                }
+            });
+
+            $('#tab1').click(function () {
+                logInFormWrapper.hide();
+                signUpFormWrapper.show();
+            });
+
+            $('#tab2').click(function () {
+                signUpFormWrapper.hide();
+                logInFormWrapper.show();
+            });
+
+            loginSignUpButton.click(function () {
+                modal.fadeIn("fast");
+            });
+
+            loginSignUpButton1.click(function () {
+                modal.fadeIn("fast");
+            });
+            /*------------------------------------*/
+            $(window).click(function (event) {
+                if (event.target.id === "myModal") {
+                    modal.fadeOut("fast");
+                }
+            });
+
+            $(window).scroll(function () {
+                var scrollBarCurrentPostion = $(window).scrollTop();
+
+                if (scrollBarCurrentPostion > floatingDivPosition.top) {
+                    floatingDiv.css({
+                        'background': '#2B3137',
+                        'color': '#fff'
+                    });
+                    $('ul.top_menu_for_sm_devices li a').css({
+                        'background': '#2B3137',
+                        'color': '#fff'
+                    });
+                    $('.top_menu li a').css({
+                        'color': '#fff'
+                    });
+                } else {
+                    floatingDiv.css({
+                        'background': '#fff',
+                        'color': '#000'
+                    });
+                    $('.top_menu li a').css({
+                        'color': '#000'
+                    });
+                    $('ul.top_menu_for_sm_devices li a').css({
+                        'background': '#fff',
+                        'color': '#000'
+                    });
+                }
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var radioForLogIn = $('input:radio.radioForLogIn');
+            var chekedRegistrationStatusForLogIn = $('#chekedRegistrationStatusForLogIn');
+            radioForLogIn.change(function () {
+                if (radioForLogIn.is(':checked')) {
+                    chekedRegistrationStatusForLogIn.attr('value', $(this).attr('value'));
+                }
+            });
+
+            var chekedRegistrationStatusForSignUp = $('#chekedRegistrationStatusForSignUp');
+            var radioForSignUp = $('input:radio.radio');
+
+            radioForSignUp.change(function () {
+                if (radioForSignUp.is(':checked')) {
+                    chekedRegistrationStatusForSignUp.attr('value', $(this).attr('value'));
+                }
+            });
+
+            $('#userName').keyup(function () {
+                var userName = $('#userName').val();
+                var output = $('#output');
+                var availableUserNames = $('#availableUserNames');
+                var linkAvailableUserNames = $('#linkavailableUserNames');
+                if (userName.length >= 4) {
+                    $.ajax({
+                        //url: "~/User/Registration/GetAvailableUserName",
+                        url: "@Url.Action("GetAvailableUserName", "Account")",
+                        method: "POST",
+                        data: { UserName: userName },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.NameInUse) {
+                                output.text(userName + " already in use. try another?").css({
+                                    'color': 'red'
+                                });
+                                availableUserNames.text("Available: ");
+
+                                linkAvailableUserNames.text(data.UserName).click(function () {
+                                    output.text('');
+                                    availableUserNames.text('');
+                                    $('#userName').val($(this).text());
+                                    $(this).text('');
+                                });
+                            } else {
+                                output.text(data.UserName + " is available.").css({
+                                    'color': 'green'
+                                });
+                                availableUserNames.text("");
+                                linkAvailableUserNames.text("");
+                            }
+                        },
+                        error: function (data) {
+                            alert("There is an error.");
+                        }
+                    });
+                }
+            });
+
+            var signUp = $('#signUp');
+            signUp.click(function () {
+                var userName = $('#userName').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var confirmPassword = $('#confirmPassword').val();
+                var chekedRegistrationStatusForSignUp = $('#chekedRegistrationStatusForSignUp').val();
+
+                var jsonData = {
+                    UserName: userName,
+                    Email: email,
+                    Password: password,
+                    ConfirmPassword: confirmPassword,
+                    RegistrationStatus: chekedRegistrationStatusForSignUp
+                }
+
+                $.ajax({
+                    url: "@Url.Action("CreateAccount", "Account")",
+                    method: "POST",
+                    data: JSON.stringify(jsonData),
+                    contentType: "application/json;utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data === true) {
+                            $("#divCreateAccountStatus").html("Welcome Your Account Successfully created!").addClass('alert alert-success');
+                        } else {
+                            $("#divCreateAccountStatus").html("Oops Something went Wrong").addClass('alert alert-danger');
+                        }
+                    },
+                    error: function (data) {
+                        //$('#divCreateAccountStatus').html("Oops Something went Wrong").addClass('alert alert-danger');
+                    }
+                });
+                return false;
+            });
+
+            $('#login').click(function () {
+                var email = $('#loginEmail').val();
+                var password = $('#loginPassword').val();
+                var chekedRegistrationStatusForLogIn = $('#chekedRegistrationStatusForLogIn').val();
+
+                var jsonData = {
+                    Email: email,
+                    Password: password,
+                    RegistrationStatus: chekedRegistrationStatusForLogIn
+                }
+
+                $.ajax({
+                    url: '@Url.Action("LogIn", "Account")',
+                    method: "POST",
+                    data: JSON.stringify(jsonData),
+                    contentType: "application/json;charset = utf-8",
+                    dataType: "json",
+
+                    success: function (data) {
+                        if (data.isRedirect) {
+                            window.location.href = data.redirectUrl;
+                        } else if (data === false) {
+                            $('#divLoginError').html("Login Details Incorrect. Please try again.").addClass('alert alert-danger');
+                        }
+                    },
+                    error: function (data) {
+                        $('#divLoginError').html("404 Not found.").addClass('alert alert-danger');
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+
+</body>
+</html>

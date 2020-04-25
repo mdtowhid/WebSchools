@@ -1,0 +1,109 @@
+﻿
+/*.dashboard h4 {
+    padding: 10px;
+}
+
+.dashboard {
+    width: 20%;
+    height: 620px;
+    background: #303030;
+    float: left;
+    position: fixed;
+    border-right: 10px solid #232427;
+    color: #AAAAAA;
+}
+
+    .dashboard input, .dashboard input:focus {
+        background: #303030;
+        width: 96%;
+        margin: 0 auto;
+        color: #fff;
+    }
+
+.cWriterInfo {
+    width: 78%;
+    height: 75px;
+    float: right;
+    border-bottom: .5px solid #AAAAAA;
+    color: #aaaaaa;
+    padding-top: 25px;
+}
+
+.dashboard_menu {
+    margin-top: 5px;
+}
+
+    .dashboard_menu li i {
+        display: inline-block;
+    }
+
+    .dashboard_menu li a {
+        padding: 10px 10px;
+        color: #AAAAAA;
+        overflow: hidden;
+        display: block;
+        font-size: 15px;
+        transition: .5s all ease-in;
+        font-family: consolas;
+        font-size: 100%;
+    }
+
+        .dashboard_menu li a:hover {
+            color: #F5F5F5;
+        }
+
+.cWriterHistory {
+    width: 78%;
+    height: 460px;
+    float: right;
+    color: #aaaaaa;
+}
+
+    .form-control, .cWriterHistory, input[type="date"], input:focus {
+        background: #303030;
+        margin: 0 auto;
+        color: #fff;
+        transition: min-width .3s ease;
+    }
+    input[type="date"] {
+    }
+.content_form {
+    margin-left: -15px;
+    margin-top: 32px;
+}
+ @media only screen and (max-width: 800px) {
+    .dashboard {
+        width: 240px;
+        margin-left: -240px;
+        z-index: 4;
+    }
+    .webschools_logo li:nth-child(1) a {
+        font-size: 23px;
+        padding: 0;
+    }
+    .under_nav h4 {
+        color: #aaa;
+        display: inline-block;
+        padding: 7px 0;
+    }
+    #open_menu {
+        padding: 11px 12px;
+        margin-left: 5px;
+        padding-right: 10px;
+        display: inline-block;
+    }
+    .dashboard input {
+        display: none;
+    }
+ }
+ 
+.divResult {
+    border: 1px solid #CED4DA;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 2px;
+}
+ .cusom_btn {
+     display: inline-block;
+     margin-right: 10px;
+ }*/

@@ -1,0 +1,80 @@
+﻿@using WebSchools.Models.Jquery
+
+@{
+    ViewBag.Title = "Jq";
+    Layout = "~/Areas/Jquery/Views/Shared/_Jquery.cshtml";
+    JqueryIndex jqSinglePage = ViewBag.SinglePage;
+}
+
+
+<div class="section_wrapper fix">
+    <div class="articles_wrapper">
+        <div class="">
+            @Html.Raw(jqSinglePage.MainHeadingDescription)
+        </div>
+        @if (ViewBag.NoJqueryTutorial != null)
+        {
+            <div class="alert alert-success">
+                <h2>@ViewBag.NoneJsTutorials</h2>
+            </div>
+        }
+        else
+        {
+            int i = 1;
+            foreach (JqueryTutorial jqTutorial in ViewBag.JqTutorials)
+            {
+                if (jqTutorial.ActiveStatus)
+                {
+                    <div class="jq_sub">
+                        <h3>@jqTutorial.SubHeading</h3>
+                        <p>@jqTutorial.SubExplanation</p>
+                    </div>
+                    foreach (JqueryExample jqExample in ViewBag.JqExamples)
+                    {
+                        if (jqExample.ActiveStatus)
+                        {
+                            if (jqTutorial.Id == jqExample.JqTutorialId)
+                            {
+                                <div class="single_page_wrapper">
+                                    <div class="js_tutorial_box">
+                                        <h3>@Html.Raw(jqExample.ExampleHeading)</h3>
+                                        <p>@Html.Raw(jqExample.Description)</p>
+                                    </div>
+
+                                    <section class="codeExampleWrapper fix">
+                                        <div class="codeExampleHeading fix">
+                                            <div class="float_left">
+                                                <h3>উদাহরণ</h3>
+                                            </div>
+                                        </div>
+                                        <article class="codeExample fix">
+                                            <div class="float_left copy_codes" style="width: 95%">
+                                                @Html.Raw(jqExample.Example)
+                                            </div>
+                                            <div class="float_right">
+                                                <span class="copy_button" title="Copy the code"><i class="fa fa-copy"></i></span>
+                                            </div>
+                                            <a href="~/jquery/jqueryTutorial/tryIt/@jqExample.Id" class="try_it_button" target="_blank">Try it Yourself</a>
+                                        </article>
+                                    </section>
+
+                                    <section>
+                                        <article style="margin-top: 30px;">
+                                            <div>
+                                                <h3>উদাহরণ ব্যাখ্যা</h3>
+                                                <p class="explanation">@Html.Raw(jqExample.Description)</p>
+                                            </div>
+                                        </article>
+                                    </section>
+                                </div>
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+        }
+    </div>
+</div>

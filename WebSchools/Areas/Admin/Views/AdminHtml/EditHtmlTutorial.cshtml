@@ -1,0 +1,99 @@
+﻿@using WebSchools.Models.Html
+@model HtmlTutorial
+
+@{
+    ViewBag.Title = "EditHtmlTutorial";
+    Layout = "~/Areas/Admin/Views/Shared/_adminHtml.cshtml";
+}
+
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+<div class="form_head">
+    @*<h2>Currently Editing <mark>@Model.Heading</mark></h2>*@
+    <h4>Html Tutorial</h4>
+</div>
+<hr />
+<div class="well-sm form-group status">
+    @if (ViewBag.Error != null)
+    {
+        <div class="text-danger">@Html.Raw(ViewBag.Error)</div>
+    }
+    <p><b>Slug = @Model.Slug</b></p>
+</div>
+
+<div style="">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Slug, new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                <input type="text" value="@Model.Slug" name="Slug" class="form-control" hidden/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Heading, new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.TextAreaFor(model => model.Heading, 5, 5, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Heading)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Explanation, new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.TextAreaFor(model => model.Explanation, 5, 5, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Explanation)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Example, new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.TextAreaFor(model => model.Example, 10, 5, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Example)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.TextAreaFor(model => model.Description, 5, 5, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+
+
+        <input type="text" name="Sort" value="@Model.Sort" hidden />
+
+
+        <input type="text" name="ActiveStatus" value="false" hidden />
+        <input type="text" name="AwesomeClass" value="awesomeClass" hidden />
+        <input type="text" name="AdminId" value="@Session["HtmlAdminId"]" hidden disabled/>
+        <input type="text" name="Date" value="@System.DateTime.Now" hidden />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+    <script>
+        $(document).ready(function() {
+            //$('input[name="Slug"]').prop('disabled', true);
+            //$('input[name="AdminId"]').prop('disabled', true);
+        });
+    </script>
+</div>
+

@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+    <link href="~/Content/Responsives.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-localScroll/2.0.0/jquery.localScroll.min.js"></script>
+    
+    <script src="~/Scripts/Scripts.js"></script>
+
+</head>
+<body>
+
+
+<div class="container_wrapper" style="background: #24292E;">
+    <div class="container_fixed fix">
+        <header id="header">
+            <div class="logo"><span><i class="fa fa-home"></i></span></div>
+            <nav class="">
+                <ul class="lg_devices_menu">
+                    <li><a href="#htmlId">এইচটিএমএল</a></li>
+                    <li><a href="#cssId">CSS</a></li>
+                    <li><a href="#javaScriptId">Javascript</a></li>
+                    <li><a href="#jQueryId">jQuery</a></li>
+                    <li><a href="#angularJsId">AngularJs</a></li>
+                    <li><a href="#howToId">Learn How To</a></li>
+                </ul>
+            </nav>
+            <div class="toogle_icon_wrapper">
+                <span><i class="fa fa-bars" onclick="toggleFunction();"></i></span>
+            </div>
+        </header>
+
+        <div class="sm_devices_menu">
+            <ul id="navbar">
+                <li><a href="#htmlId" onclick="toggleFunction();">এইচটিএমএল</a></li>
+                <li><a href="#cssId" onclick="toggleFunction();">CSS</a></li>
+                <li><a href="#javaScriptId" onclick="toggleFunction();">Javascript</a></li>
+                <li><a href="#jQueryId" onclick="toggleFunction();">jQuery</a></li>
+                <li><a href="#angularJsId" onclick="toggleFunction();">AngularJs</a></li>
+                <li><a href="#howToId" onclick="toggleFunction();">Learn How To</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+
+
+
+
+<div style="clear: both;"></div>
+
+<div class="container_wrapper">
+    @RenderBody()
+</div>
+
+
+
+<div class="container_wrapper footerBg">
+    <div class="container_fixed fix">
+        <footer id="footer" class="fix">
+            <div>
+                @DateTime.Now.Year &copy; WebSchools.com.bd
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script>
+    var x = document.getElementById("navbar");
+    function toggleFunction() {
+
+        if (x.className.indexOf("display_block") == -1) {
+            x.className += " display_block";
+        } else {
+            x.className = x.className.replace(" display_block", "");
+        }
+
+        if (x.style.maxHeight) {
+            x.style.maxHeight = null;
+
+        } else {
+            x.style.maxHeight = x.scrollHeight + "px";
+        }
+    }
+</script>
+
+</body>
+</html>

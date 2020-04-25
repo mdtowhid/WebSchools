@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_D.cshtml";
+}
+
+@Html.Partial("~/Views/Templates/Html.cshtml")
+@Html.Partial("~/Views/Templates/css.cshtml")
+@Html.Partial("~/Views/Templates/js.cshtml")
+@Html.Partial("~/Views/Templates/jq.cshtml")
+@Html.Partial("~/Views/Templates/sql.cshtml")
+@Html.Partial("~/Views/Templates/php.cshtml")
+@Html.Partial("~/Views/Templates/ict.cshtml")
+
+
+
+
+<div class="scrollTop">
+    <a href="#scrollTopId">&uArr;</a>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        var mainImageAttr = $('#mainImageId img');
+        var thumbImage = $('#thumnailImageId img');
+        thumbImage.mouseover(function () {
+            var thumbImageSrc = $(this).attr('src');
+            mainImageAttr.attr('src', thumbImageSrc).css('transition', '.5s all ease-in-out');
+        });
+
+        var jsNewItemAddBtn = $('#jsNewItemAddBtn');
+        var jsItemDltBtn = $('#jsItemDltBtn');
+        var count = 0;
+        jsNewItemAddBtn.click(function () {
+            count++;
+            $('#newItemAddMenu').append('<li>New Item ' + count + '</li>');
+        });
+
+        $('#jsItemDltBtn').click(function () {
+            if ($('#oldItemDltMenu li').length <= 0) {
+                $('.no_item_error')
+                    .show()
+                    .text("There is no item to delete.")
+                    .addClass('text-danger');
+            } else {
+                $('#oldItemDltMenu li:first-child').remove();
+                $('.no_item_error').hide();
+            }
+        });
+
+        $('#addRemoveClass').click(function () {
+            $('.js_ex_adCl_box1').toggleClass('active');
+            $('.js_ex_adCl_box2').toggleClass('active');
+        });
+
+        $('#jqAnimateExBtnId').click(function () {
+            var fontSize = $('#jqAnimation').attr('font-size');
+            $('#jqAnimation').animate({
+                fontSize: "+=1.5em"
+            }, 300);
+
+            $('#jqAnimation').animate({
+                letterSpacing: "+=0.3em"
+            }, 1000);
+
+            $('.animateP').animate({
+                letterSpacing: "+=0.3em",
+                opacity: '.7'
+            }, 2500);
+        });
+        $('#jqSlideExBtnId').click(function () {
+            $('#jqSlide').slideToggle(2000);
+        });
+
+        $('#jqAndAjaxExBtnId').click(function () {
+            $('#jqAjaxResult').load('/Docs/blurJq.txt');
+        });
+
+        $('#clearBtnId').click(function () {
+            $('#jqAjaxResult').empty();
+        })
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#sqlExBtnId').click(function() {
+            var editorCodes = $("#sqlQuery").text();
+            $('#sqlQueryUpdationDivBoxId').empty();
+
+            function dynamicTable(data) {
+                var tab = $("<table></table>");
+                var thead = $("<thead></thead>");
+                thead.append('<th>Sl.</th>');
+                thead.append('<th>Customer Name</th>');
+                thead.append('<th>Contact Num</th>');
+                thead.append('<th>City</th>');
+                thead.append('<th>Eail</th>');
+                thead.addClass("table-active");
+                tab.append(thead);
+
+                $.each(data, function (index, value) {
+                    var trow = $('<tr></tr>');
+                    trow.append('<td>' + value.Id + '</td>');
+                    trow.append('<td>' + value.CustomerName + '</td>');
+                    trow.append('<td>' + value.ContactNumber + '</td>');
+                    trow.append('<td>' + value.City + '</td>');
+                    trow.append('<td>' + value.Email + '</td>');
+                    tab.append(trow);
+                });
+                $('#sqlQueryUpdationDivBoxId').append(tab.addClass("table table-bordered table-striped table-condensed table-hover"));
+            }
+
+            $.ajax({
+                url: "@Url.Action("GetCustomersDataByUserQuery", "SqlTutorial")",
+                type: "GET",
+                data: { userQuery: editorCodes },
+                dataType: "json",
+                success: function (data) {
+                    dynamicTable(data);
+                },
+                error: function () {
+                    alert("Oops! There Is An Error");
+                }
+            })
+        });
+
+        var scrollTopPostion = $('.scrollTop').position();
+        
+        var scrollBarPosition = $(window).scrollTop();
+
+        $(window).scroll(function () {
+
+            if (scrollBarPosition.top == 700) {
+                scrollTopPostion.addClass('scrollTopPostionStyles');
+            } else {
+                
+            }
+        });
+
+    });
+</script>

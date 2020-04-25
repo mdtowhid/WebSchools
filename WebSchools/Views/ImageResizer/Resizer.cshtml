@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "Resizer";
+    Layout = "~/Views/Shared/_imgResizer.cshtml";
+    //HttpCookie cookie = Request.Cookies["ImageUrl"];
+}
+
+<style>
+
+    * {
+        transition: none;
+    }
+
+    body {
+        height: 300vh;
+        width: 100%;
+        background: linear-gradient(left, #00bf8f, #001510);
+        background: -webkit-linear-gradient(left, #00bf8f, #001510);
+        position: relative;
+    }
+    #navMenuId {
+        display: none;
+    }
+    #ImageUrl {
+        color: transparent;
+        overflow: hidden;
+        display: inline;
+        width: 117px;
+        height: 32px;
+        position: absolute;
+        top: 2%;
+        left: 1%;
+        margin-bottom: 25px;
+        z-index: 1;
+    }
+
+        #ImageUrl::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+
+        #ImageUrl::before {
+            content: 'Select Image';
+            display: inline-block;
+            background: linear-gradient(top, #f9f9f9, #e3e3e3);
+            background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+            border: 1px solid #999;
+            border-radius: 3px;
+            padding: 5px 8px;
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: pointer;
+            text-shadow: 1px 1px #fff;
+            font-weight: 700;
+            font-size: 10pt;
+            color: black;
+            height: auto;
+        }
+</style>
+
+
+<div class="img_resizer_wrapper fix">
+    <div class="resizer_menu">
+        <a href="~/index/index/">Home</a>
+        <a href="~/account/signUp/">Sign Up / Log In</a>
+        <a href="~/imageResizer/resizer/">Image Resizer</a>
+        <a href="~/blogs/home/">Webschool Blog</a>
+        <a href="~/index/articles/">Webschool Articles</a>
+    </div>
+    <div class="img_resizer_div fix">
+        @using (Html.BeginForm("Resizer", "ImageResizer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <h3 style="text-align: center; color: white">Image Resizer</h3>
+            @Html.AntiForgeryToken()
+            <input type="text" name="Width" value="" class="img_width" hidden/>
+            <input type="text" name="Height" value="" class="img_height" hidden/>
+            <input type="file" name="file" id="ImageUrl" required/>
+
+            <div class="resizable_div" id="ddd">
+                <img class="targetImg">
+            </div>
+            <div class="resized_img_box">
+                @if (Session["ImageUrl"] != null && Session["ImageName"] != null)
+                {
+                    <h3>Resized Image</h3>
+                    <img src="@Url.Content(Session["ImageUrl"].ToString())"/>
+                    <br/>
+                    @Html.ActionLink("Download Here", "DownloadFile", "ImageResizer",
+                        new {fileName = Session["ImageName"]}, new {@target = "_blank"})
+                    ;
+                }
+            </div>
+            <input type="submit" value="Resize" id="submit"/>
+        }
+        @if (ViewBag.Resized != null)
+        {
+            <span class="well text-danger">@ViewBag.Resized</span>
+        }
+        @*@if (Request.Cookies["ImageUrl"].Value.ToString() != null)
+        {
+            <h1>@Request.Cookies["ImageUrl"].Value.ToString()</h1>
+        }*@
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#submit').hide();
+        function readUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.targetImg').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $('#ImageUrl').change(function () {
+            readUrl(this);
+            $('#submit').show();
+
+            $('.resizable_div').css({
+                'width': 200 + 'px',
+                'height': 200 + 'px',
+                'visibility': 'visible'
+            });
+        });
+
+
+        $('.resizable_div').mouseup(function () {
+            //$('.resizable_div').empty();
+            var x = $('.resizable_div img');
+            var w = $(this).width();
+            var h = $(this).height();
+            x.css({
+                'width': w,
+                'height': h
+            });
+
+            $('.img_width').val(Math.ceil(x.width()));
+            $('.img_height').val(Math.ceil(x.height()));
+        });
+        $('#resizer_btn').click(function () {
+            $(this).text("Image Resized");
+        });
+
+        //Image Cropping using JCrop plugin...
+        //$('.targetImg').Jcrop()
+    });
+</script>

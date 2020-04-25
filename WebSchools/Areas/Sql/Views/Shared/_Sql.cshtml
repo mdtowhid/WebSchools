@@ -1,0 +1,134 @@
+﻿@using WebSchools.Models
+@using WebSchools.Models.JavaScript
+@using WebSchools.Models.Sql
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    @{
+        SqlIndex sqlSinglePage = ViewBag.SqlSinglePage;
+        string href = "~/Sql/SqlTutorial/Sql/";
+    }
+</head>
+<body>
+
+    <div class="container_wrapper fix" id="innerPageZIndex">
+        <div class="" id="overlays">
+            <div class="tutorial_menu_wrap float_left fix">
+                <span class="page_resizer" title="Resize this page">&equiv;</span>
+                <div class="hide_on_resized">
+                    <ul class="tutorial_menu_list_header">
+                        <li><a href="~/index/index">&lArr; HOME</a></li>
+                        <li><h4 class="heading_current_page_indigator">SQL টিউটোরিয়াল</h4></li>
+                        <li style="padding: 0">
+                            <div class="custom_checkbox_lang"></div>
+                        </li>
+                        <li><input id="searchBoxId" type="text" placeholder="Search here" /></li>
+                    </ul>
+
+                    <ul class="tutorial_menu_list fix">
+                        @foreach (SqlIndex si in ViewBag.SqlIndices)
+                        {
+                            if (si.Slug == sqlSinglePage.Slug)
+                            {
+                                <li class="active"><a href="~/sql/sqlTutorial/sql/@si.Slug">@si.Heading</a></li>
+                            }
+                            else
+                            {
+                                <li class=""><a href="~/sql/sqlTutorial/sql/@si.Slug">@si.Heading</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="body_wrapper float_right fix" style="">
+            @Html.Partial("~/Views/Shared/_menus.cshtml", null)
+            <div class="under_nav fix">
+                <span class="hide_lg_devices" id="open_menu">
+                    <i class="fa fa-bars"></i>
+                </span>
+
+                <h4>@sqlSinglePage.Heading</h4>
+
+            </div>
+            <div class="the_render_body fix" id="innerPageMarginBottom">
+                @RenderBody()
+                <section class="nextPrevSectionWrapper fix">
+                    <article class="nextPrevArticleWrapper fix">
+                        <div class="nextPrev fix">
+                            @{
+                                SqlIndex nextPage = ViewBag.NextPage;
+                                SqlIndex prevPage = ViewBag.PrevPage;
+                            }
+                            <a style="float: left" href="~/sql/sqlTutorial/sql/@prevPage.Slug">Prev Page</a>
+                            <a style="float: right" href="~/sql/sqlTutorial/sql/@nextPage.Slug">Next Page</a>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("~/Views/Shared/_InnerPageFooter.cshtml", null)
+    <script>
+        $(document).ready(function() {
+            function menuItems(data) {
+                $.each(data,
+                    function(i, v) {
+                        var li = $('<li></li>');
+                        li.append('<a href="@Url.Content(href)' + v.Slug + '">' + v.Heading + '</a>');
+                        $('.tutorial_menu_list').append(li);
+                    });
+            }
+
+
+            $('#searchBoxId').keyup(function () {
+                var queryString = $(this).val();
+                var checkBoxVal = $('input[type="radio"]:checked').val();
+                if (checkBoxVal == "bangla") {
+                    $.ajax({
+                        url: '@Url.Action("GetSqlIndicesByBanglaQuery", "SqlTutorial")',
+                        method: "GET",
+                        data: { queryString: queryString },
+                        dataType: "json",
+                        success: function(data) {
+                            $('.tutorial_menu_list').empty();
+                            menuItems(data);
+                        },
+                        error: function() {
+                            alert("Oops! There Is An Error");
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: '@Url.Action("GetSqlIndicesByEnglishQuery", "SqlTutorial")',
+                        method: "GET",
+                        data: { queryString: queryString },
+                        dataType: "json",
+                        success: function(data) {
+                            $('.tutorial_menu_list').empty();
+                            menuItems(data);
+                        },
+                        error: function() {
+                            alert("Oops! There Is An Error");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title</title>
+
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/dataTableCss")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datatables")
+    @RenderSection("scripts", required: false)
+    <style>
+        h4 {
+            opacity: .7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container_wrapper fix">
+        <div class="ad_menu_wrapper fix float_left">
+            <h2 style="opacity: .9">Dashboards</h2>
+            <div id="">
+                <h4><a class="ad_m_btn" href="#html">HTML</a></h4>
+                <ul class="admin_menu_list">
+                    <li><a href="~/index/index/">WS Home</a> </li>
+                    <li><a href="~/admin/adminHtml/index/">HTML Default</a> </li>
+                    <li><a href="~/admin/adminHtml/ceateHtmlTutorial/">Create HTML Tutorials</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="admin_right fix float_right">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+﻿@using WebSchools.Models.JavaScript
+@model WebSchools.Models.JavaScript.JavaScriptTutorial
+
+@{
+    ViewBag.Title = "EditJsTutorial";
+    Layout = "~/Areas/Admin/Views/Shared/_adminJs.cshtml";
+}
+
+
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+<div class="form_head">
+    <h2>Edit Js Tutorial</h2>
+    <p><b>Current Slug : </b> <mark>@Model.Slug</mark></p>
+</div>
+<div class="well-sm form-group status">
+    @if (ViewBag.Error != null)
+    {
+        <div class="text-danger">@Html.Raw(ViewBag.Error)</div>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <div class="text-success">@Html.Raw(ViewBag.Success)</div>
+    }
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <input type="text" value="@Model.Id" name="Id" hidden />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+
+
+
+            <input id="slug" value="@Model.Slug" data-id="@Model.Id" name="Slug" class="form-control" hidden/>
+
+
+        </div>
+    </div>
+    <input type="text" name="JavaScriptIndexId" id="javaScriptIndexId" value="" hidden />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Heading, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.Heading, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Explanation, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.Explanation, 5, 5, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Explanation, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <input type="text" name="Sort" value="123" hidden />
+    <input type="text" name="ActiveStatus" value="false" hidden />
+    <input type="text" name="AwesomeClass" value="awesomeClass" hidden />
+    <input type="text" name="AdminId" value="@Session["JsAdminId"]" hidden />
+    <input type="text" name="Date" value="@System.DateTime.Now" hidden />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#javaScriptIndexId')
+                .attr('value', $('#slug').attr('data-id'));
+        });
+    </script>
+}

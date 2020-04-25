@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <style>
+    </style>
+</head>
+<body>
+
+    @*<div class="container_wrapper fix" id="topHamBurger">
+        <div class="container_fixed fix">
+            <div class="top_box fix">
+                <div class="banner"><a href="~/index/index/"><img src="~/Images/ws_logo3.png" /></a></div>
+                <div class="qoutes fix hide_sm_devices">Where anyone can learn web development.</div>
+                <div class="top_box_right hide_sm_devices">
+                    <ul>
+                        <li class=""><a href="~/priorExperiences/create/">Prior Experience</a></li>
+                        <li class="sign_in"><a href="~/content/article/signin/">Sign In</a></li>
+                    </ul>
+                </div>
+
+                <div id="navMenuSmDevicesToggleId" class="float_right hide_lg_devices nav_sm_menu_toggle">
+                    <h1>&equiv;</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container_wrapper fix hide_sm_devices" id="navMenuId">
+        <div class="container_fixed fix" style="height: 42px;">
+            <div class="nav_menu">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#htmlId">HTML</a></li>
+                    <li><a href="#cssId">CSS</a></li>
+                    <li><a href="#javaScriptId">JavaScript</a></li>
+                    <li><a href="#jQueryId">Jquery</a></li>
+                    <li><a href="#sqlId">SQL</a></li>
+                    <li><a href="#phpId">PHP</a></li>
+                    <li><a href="#ictId">ICT</a></li>
+                </ul>
+            </div>
+            <div class="up_coming_tut hide_sm_devices">
+                <marquee direction="right" onmouseover="this.stop()" onmouseout="this.start();"><a href="~/wsAllTutorials/upComing/">Up Coming tutorials &raquo;</a></marquee>
+            </div>
+        </div>
+    </div>
+
+    <div class="container_wrapper fix hide_lg_devices nav_sm_menu_wrapper" id="navMenuIdSmDevices">
+        <div class="container_fixed fix">
+            <div class="nav_sm_menu">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#htmlId">HTML</a></li>
+                    <li><a href="#cssId">CSS</a></li>
+                    <li><a href="#javaScriptId">JavaScript</a></li>
+                    <li><a href="#jQueryId">Jquery</a></li>
+                    <li><a href="#sqlId">SQL</a></li>
+                    <li><a href="#phpId">PHP</a></li>
+                    <li><a href="#ictId">ICT</a></li>
+                </ul>
+            </div>
+            <div class="up_coming_tut hide_sm_devices">
+                <marquee direction="right" onmouseover="this.stop()" onmouseout="this.start();"><a href="~/wsAllTutorials/upComing/">Up Coming tutorials &raquo;</a></marquee>
+            </div>
+        </div>
+    </div>*@
+
+            @RenderBody()
+
+
+    @Html.Partial("~/Views/Shared/_footer.cshtml", null)
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#navMenuSmDevicesToggleId").click(function () {
+                $('#navMenuIdSmDevices').toggleClass('active');
+            })
+        });
+    </script>
+</body>
+</html>

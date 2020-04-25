@@ -1,0 +1,62 @@
+﻿@model IEnumerable<WebSchools.Models.Php.PhpTutorial>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminPhp.cshtml";
+}
+<div style="padding: 10px">
+
+<p>
+    @Html.ActionLink("Create New PHP Tutorial", "CreateTutorial", new { @id=""}, new {@class="btn btn-primary"})
+</p>
+<table class="table table-bordered table-hover table-condensed table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SubHeading)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeadingDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Example)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Slug)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActiveStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubHeading)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeadingDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Example)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Slug)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActiveStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+           <a href="~/admin/adminPhp/editTutorial/@item.Id/"><i class=" fa fa-edit"></i></a>
+        </td>
+    </tr>
+}
+
+</table>
+</div>

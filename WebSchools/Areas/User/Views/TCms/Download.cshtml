@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "TCMS Download";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .thanks_download {
+        border: dashed 1px #ccc;
+        padding: 15px 0;
+        font-size: 25px;
+        opacity: .8;
+        transform: scale(.99);
+        cursor: pointer;
+        outline: none;
+        transition: .5s;
+    }
+        .thanks_download:hover {
+            transform: scale(1);
+        } .download_section {
+            width: 100%;
+            position: relative;
+            margin-top: 70px;
+        }
+
+    .left_section {
+        width: 60%;
+    }
+
+        .left_section h3 {
+            color: #3C1772;
+            font-size: 30px;
+            margin: 20px 0 20px;
+        }
+
+        .left_section p {
+            font-size: 20px;
+        }
+
+        .left_section a {
+            padding: 15px 55px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            font-size: 22px;
+            border-radius: 10px 55px 10px 10px;
+            color: #3E1873;
+            text-decoration: none;
+            transition: .5s ease-out;
+        }
+
+            .left_section a:last-child {
+                margin-left: 10px;
+            }
+
+            .left_section a:hover {
+                border-radius: 10px;
+                border: 1px solid #68217A;
+            }
+
+    .right_section {
+        width: 40%;
+        height: 250px;
+        text-align: center;
+        position: relative;
+        margin-top: 20px;
+    }
+
+        .right_section h1 {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-8deg);
+            font-size: 75px;
+            background: linear-gradient(to right, #303D46, #1DBFAF);
+            color: white;
+            border-radius: 6px;
+            padding: 38px;
+        }
+</style>
+<div class="container_wrapper fix">
+    <div class="container_fixed fix">
+        <h2 class="thanks_download">Thanks for downloading TCMS</h2>
+        <div class="download_section fix">
+            <div class="float_left fix left_section">
+                <h3>Transparent Content Management System</h3>
+                <p>Build responsive, mobile-first projects on the web with the world's smallest Transparent Content Management System(TCMS). </p>
+                <br />
+                <p>TCMS is an open source toolkit for managing your website built with C#, Entity Framework, Bootstarp Framework, HTML 5, CSS 3, JavaScript, jQuery, LINQ and SQL. Quickly prototype your ideas or build your entire app with our Sass variables and mixins, responsive tamplates, extensive prebuilt components, and powerful plugins built on jQuery. </p>
+                <br/>
+                <div class="buutons">
+                    <a href="javascript:void(0)">Get Started</a>
+                    <a href="javascript:void(0)">Download</a>
+                </div>
+                <br/>
+                <p>Currently v1.0.0</p>
+            </div>
+            <div class="float_right fix right_section">
+                <h1>TCMS</h1>
+            </div>
+        </div>
+    </div>
+</div>

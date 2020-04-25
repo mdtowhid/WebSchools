@@ -1,0 +1,88 @@
+﻿@using WebSchools.Models.Php
+@model WebSchools.Models.Php.PhpTutorial
+
+@{
+    ViewBag.Title = "Edit PHP Tutorial";
+    Layout = "~/Areas/Admin/Views/Shared/_adminPhp.cshtml";
+    PhpTutorial pt = ViewBag.CurrentPhpTPage;
+}
+
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+
+<div class="well-sm form-group status">
+    <h3>Current Slug: @pt.Slug</h3>
+    @if (ViewBag.Error != null)
+    {
+        <div class="text-danger">@Html.Raw(ViewBag.Error)</div>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <div class="text-success">@ViewBag.Success</div>
+    }
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Edit PHP Tutorial</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            <select id="slug" name="Slug" class="form-control">
+                <option value="none">Select PHP Slug</option>
+                @foreach (PhpIndex pi in ViewBag.PhpIndices)
+                {
+                    <option id="@pi.Id" value="@pi.Slug">@pi.Slug</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubHeading, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.SubHeading, 2,3, new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.SubHeading, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HeadingDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.HeadingDescription, 2, 3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.HeadingDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Example, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.Example, 2, 3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Example, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <input type="text" name="ActiveStatus" value="false" hidden />
+    <input type="text" name="AdminId" value="@Session["PhpAdminId"]" hidden disabled />
+    <input type="text" name="Date" value="@System.DateTime.Now" hidden />
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

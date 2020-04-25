@@ -1,0 +1,89 @@
+﻿@model WebSchools.Models.Article
+
+@{
+    ViewBag.Title = "New Article";
+    Layout = "~/Areas/Content/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="blg_right fix" style="padding: 10px;">
+
+    @Html.Partial("~/Areas/Content/Views/Shared/_AdminTopMenu.cshtml", null)
+    @if (ViewBag.ArticleSubmitionSuccessMessage != null)
+    {
+        <div class="alert alert-success">
+            <p>@ViewBag.ArticleSubmitionSuccessMessage</p>
+        </div>
+    }
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal content_form">
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.LanguageId, "Language", new { @class = "control-label col-md-2" })*@
+                <div class="col-md-6">
+                    @Html.DropDownList("LanguageId", "Select language")
+                    @Html.ValidationMessageFor(model => model.LanguageId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-11">
+                    @Html.TextBoxFor(model => model.ArticleTitle, "", new { @class = "form-control", @placeholder = "Title..." })
+                    @Html.ValidationMessageFor(model => model.ArticleTitle)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-11">
+                    @Html.TextAreaFor(model => model.MainArticle, new { @class = "form-control", @placeholder = "Article...", @cols = 10, @rows = 7 })
+                    @Html.ValidationMessageFor(model => model.MainArticle)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-11">
+                    @Html.TextAreaFor(model => model.ArticleExplanation, new { @class = "form-control", @placeholder = "Explanation...", @cols = 10, @rows = 7 })
+                    @Html.ValidationMessageFor(model => model.ArticleExplanation)
+                </div>
+            </div>
+
+            <input type="datetime" name="Date" value="@System.DateTime.Now" hidden />
+            <input type="text" name="CreatedBy" value="ueuue" hidden />
+            <input type="text" name="ActiveStatus" value="false" hidden />
+
+
+            <div class="form-group">
+                <div class="@*col-md-offset-2*@ col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-sm" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script>
+            $(document).ready(function () {
+                $('#LanguageId').addClass('form-control');
+                $('input[type="date"]').addClass('form-control');
+            });
+        </script>
+    }
+
+    @*<div class="fix" style="height: auto; background: #292C2F; border-top: 5px solid #232427;">
+            <div class="container_fixed fix" style="width: 98%;">
+
+
+                <div class="cWriterHistory" style="height: 1000px;">
+
+
+
+                </div>
+            </div>
+        </div>*@
+</div>

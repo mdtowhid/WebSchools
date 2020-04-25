@@ -1,0 +1,38 @@
+﻿@using WebSchools.Models
+@model WebSchools.Models.Article
+
+@{
+    /**/
+
+    ViewBag.Title = "Articles";
+    Layout = "~/Views/Shared/_D.cshtml";
+}
+<div class="articles_content_wrapper">
+    @foreach (Article a in ViewBag.Articles)
+    {
+        foreach (Registration reg in ViewBag.RegisteredUser)
+        {
+            if (reg.Id == a.RegistrationId)
+            {
+                string imageUrl = reg.ImageUrl;
+                <div class="single_article_wrapper fix">
+                    <div class="float_left img_box">
+                        <img src="~/Images/RegImg/@Url.Content(imageUrl)" />
+                    </div>
+                    <div class="float_right fix articles_details">
+                        <p><b>Posted by: </b>@a.CreatedBy</p>
+                        <p><b>Date: </b>@a.Date</p>
+                        <div class="details_artice" style="border: 1px solid #ddd; border-radius: 15px;padding: 15px;">
+                            <h4><b>Article on: </b> @a.ArticleTitle</h4>
+
+                            @*<h5>@a.Language.Names</h5>*@
+                            <p><b>Main Article: </b>@a.MainArticle</p>
+                            <p><b>Language Description: </b>@a.ArticleExplanation</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+
+</div>

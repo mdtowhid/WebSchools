@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Try It SQL - " + @Model.ExampleHeading;
+    Layout = "~/Areas/Sql/Views/SqlTutorial/_tryIt.cshtml";
+}
+@model WebSchools.Models.JavaScript.SqlExample
+
+
+
+<div class="container_wrapper editor_wrapper fix">
+    <ul class="try_it_menu">
+        <li id="run_button" class="sql_run_button">Run</li>
+        <li class="toggle_editor_color">
+            <span>Light</span>
+            <span>Dark</span>
+        </li>
+    </ul>
+    <div class="editor">
+        <textarea class="editor_codes">
+            @Model.ExampleBox
+        </textarea>
+
+        <div id="sql_editor_result"></div>
+    </div>
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.sql_run_button').click(function() {
+            var editorCodes = $(".editor_codes").val();
+            $('#sql_editor_result').empty();
+            //$("#sql_editor_result").text(editorCodes);
+
+            function dynamicTable(data) {
+                var tab = $("<table></table>");
+                var thead = $("<thead></thead>");
+                thead.append('<th>Sl.</th>');
+                thead.append('<th>Customer Name</th>');
+                thead.append('<th>Contact Num</th>');
+                thead.append('<th>City</th>');
+                thead.append('<th>Eail</th>');
+                thead.addClass("table-active");
+                tab.append(thead);
+
+                $.each(data, function (index, value) {
+                    var trow = $('<tr></tr>');
+                    trow.append('<td>' + value.Id + '</td>');
+                    trow.append('<td>' + value.CustomerName + '</td>');
+                    trow.append('<td>' + value.ContactNumber + '</td>');
+                    trow.append('<td>' + value.City + '</td>');
+                    trow.append('<td>' + value.Email + '</td>');
+
+
+                    tab.append(trow);
+                });
+                tab.addClass("table table-bordered table-striped table-condensed table-hover");
+                $('#sql_editor_result').append(tab);
+            }
+
+            $.ajax({
+                url: "@Url.Action("GetCustomersDataByUserQuery", "SqlTutorial")",
+                type: "GET",
+                data: { userQuery: editorCodes },
+                dataType: "json",
+                success: function (data) {
+                    dynamicTable(data);
+                },
+                error: function (data) {
+                    alert("You have an sql syntax error. Press F5 to reload.");
+                }
+            })
+        });
+    });
+</script>
+
+

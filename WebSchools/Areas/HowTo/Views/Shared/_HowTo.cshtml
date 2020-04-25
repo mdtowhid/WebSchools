@@ -1,0 +1,74 @@
+﻿﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+
+    <script src="~/Scripts/Scripts.js"></script>
+
+</head>
+<body>
+
+@Html.Partial("~/Views/Shared/_menus.cshtml", null)
+    <div class="container_wrapper fix" style="background: #F9F9FA; color: #0C0C14; ">
+        <div class="" id="overlays">
+            <div class="tutorial_menu_wrap float_left fix">
+                <aside>
+                    <ul class="tutorial_menu_list fix">
+                        <li><h4 class="heading_current_page_indigator">Learn how to Tutorial</h4></li>
+                        @*@foreach (Html html in ViewBag.Htmls)
+                            {
+                                if (htmlSinglePage.Id == html.Id)
+                                {
+                                    <li class="@htmlSinglePage.ActiveStatus"><a href="/Html/HtmlTutorial/Page/@html.Slug">@html.Heading</a></li>
+                                }
+                                else
+                                {
+                                    <li class=""><a href="/Html/HtmlTutorial/Page/@html.Slug">@html.Heading</a></li>
+                                }
+
+                            }*@
+                    </ul>
+                </aside>
+            </div>
+        </div>
+        <div class="body_wrapper float_right fix" style="">
+            <div class="under_nav fix" style="width: 100%">
+                <span class="hide_lg_devices float_left" id="open_menu">
+                    <i class="fa fa-bars"></i>
+                </span>
+
+                <h4>Heading</h4>
+
+            </div>
+            <div class="the_render_body">
+                @RenderBody()
+            </div>
+
+            <section class="nextPrevSectionWrapper">
+                <article class="nextPrevArticleWrapper">
+                    <div class="nextPrev">
+                        @*@Html.ActionLink("Previous", "PreviousPage", "HtmlTutorial", new { id = htmlSinglePage.Id }, new { @class = "float_left btn btn-sm btn-primary" })
+                    @Html.ActionLink("Next", "NextPage", "HtmlTutorial", new { id = htmlSinglePage.Id }, new { @class = "float_right btn btn-sm btn-primary" })*@
+                    </div>
+                </article>
+            </section>
+
+            @Html.Partial("~/Views/Shared/_footer.cshtml", null)
+        </div>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿@*@model WebSchools.Models.Registration*@
+@{
+    ViewBag.Title = "Log In";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container_fixed" style="min-height: 500px;">
+    <div class="regFormStyle fix">
+        @*@using (Html.BeginForm())*@
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-12">
+                    <h4>Log in</h4>
+                    <hr/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="text" name="Email" class="form-control" placeholder="Email"/>
+                    <div class="error"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="text" name="Password" class="form-control" placeholder="Password"/>
+                    <div class="error"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-md-12">
+                    @*@Html.CheckBoxFor(x => x.RememberMe) Remember Me*@
+                    @*<label> <input type="checkbox" class="" name="RememberMe" id="" /> Remember me</label>*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12 checkboxes">
+                    <label> <input type="checkbox" class="checkbox" name="" id="asTeacher"/> As a Teacher</label>
+                    <label> <input type="checkbox" class="checkbox" id="asStudent"/> As a Student</label>
+                    <label> <input type="checkbox" class="checkbox" id="asContentWritter"/> As a Content Writter</label>
+                    <label> <input type="checkbox" class="checkbox" id="asVisitors"/> As a Visitors</label>
+
+
+                    <div id="checkedErrorCheckBox" style="color: red"></div>
+                    <input type="text" name="RegistrationStatus" id="chekedRegistrationStatus" hidden/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Log In" class="btn btn-primary btn-sm"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">
+                            @Html.Raw(@ViewBag.Error)
+                        </div>
+                    }
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+        var checkBoxes = $('input:checkbox.checkbox');
+        var checkedBoxeValue = function () {
+            if ($('#asTeacher').is(':checked')) {
+                return $('#asTeacher').attr('id');
+            }
+            if ($('#asStudent').is(':checked')) {
+                return $('#asStudent').attr('id');
+            }
+            if ($('#asContentWritter').is(':checked')) {
+                return $('#asContentWritter').attr('id');
+            }
+            if ($('#asVisitors').is(':checked')) {
+                return $('#asVisitors').attr('id');
+            }
+        }
+
+        checkBoxes.change(function () {
+            if ($(this).is(':checked')) {
+                checkBoxes.prop('disabled', true);
+                $(this).prop('disabled', false);
+
+                $('#chekedRegistrationStatus').attr('value', checkedBoxeValue());
+
+
+                $('#checkedErrorCheckBox').html("");
+            } else {
+                checkBoxes.prop('disabled', false);
+                $('#checkedErrorCheckBox').html("Please select at least one category of checkboxes");
+            }
+        });
+
+
+    });
+</script>

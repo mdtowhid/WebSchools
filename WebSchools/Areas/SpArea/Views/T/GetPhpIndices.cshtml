@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebSchools.Models.Php.PhpIndex>
+
+@{
+    ViewBag.Title = "Php Indices";
+    Layout = "~/Areas/SpArea/Views/Shared/_SpArea.cshtml";
+}
+<div class="sp_right fix">
+
+    @Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+
+    <p>
+        @Html.ActionLink("Add New PHP Index", "CreatePhpIndex")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Heading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeadingDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveStatus)
+            </th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Heading)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeadingDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActiveStatus)
+                </td>
+                <td>
+                    <a href="~/spArea/t/editPhpIndex/@item.Id"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

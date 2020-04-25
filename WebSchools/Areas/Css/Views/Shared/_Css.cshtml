@@ -1,0 +1,130 @@
+﻿@using WebSchools.Models
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> @ViewBag.Title Tutorial</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @{
+        CssIndex cssSingleIndex = ViewBag.CssIndex;
+        string href = "/Css/CssTutorial/Page/";
+    }
+</head>
+<body>
+    <div class="container_wrapper fix" id="innerPageZIndex">
+        <div class="" id="overlays">
+            <div class="tutorial_menu_wrap float_left fix">
+                <span class="page_resizer" title="Resize this page">&equiv;</span>
+                <div class="hide_on_resized">
+                    <ul class="tutorial_menu_list_header">
+                        <li><a href="~/index/index">&lArr; HOME</a></li>
+                        <li><h4 class="heading_current_page_indigator">CSS টিউটোরিয়াল</h4></li>
+                        <li style="padding: 0">
+                            <div class="custom_checkbox_lang"></div>
+                        </li>
+                        <li><input id="searchBoxId" type="text" placeholder="Search here" /></li>
+                    </ul>
+
+                    <ul class="tutorial_menu_list fix">
+                        @foreach (CssIndex ci in ViewBag.CssIndexes)
+                        {
+                            if (cssSingleIndex.Slug == ci.Slug)
+                            {
+                                <li class="active"><a href="~/css/cssTutorial/css/@ci.Slug">@ci.Heading</a></li>
+                            }
+                            else
+                            {
+                                <li class=""><a href="~/css/cssTutorial/css/@ci.Slug">@ci.Heading</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="body_wrapper float_right fix" style="">
+            @Html.Partial("~/Views/Shared/_menus.cshtml", null)
+            <div class="under_nav fix">
+                <span class="hide_lg_devices float_left" id="open_menu">
+                    <i class="fa fa-bars"></i>
+                </span>
+
+                <h4>@cssSingleIndex.Heading</h4>
+
+            </div>
+            <div class="the_render_body" id="innerPageMarginBottom">
+                @RenderBody()
+
+                <section class="nextPrevSectionWrapper fix">
+                    <article class="nextPrevArticleWrapper">
+                        <div class="nextPrev">
+                            @{
+                                CssIndex nextPage = ViewBag.NextPage;
+                                CssIndex prevPage = ViewBag.PrevPage;
+                            }
+                            <a style="float: left" href="~/css/cssTutorial/css/@prevPage.Slug">Prev Page</a>
+                            <a style="float: right" href="~/css/cssTutorial/css/@nextPage.Slug">Next Page</a>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+        </div>
+    </div>
+    @Html.Partial("~/Views/Shared/_InnerPageFooter.cshtml", null)
+    <script>
+    $(document).ready(function () {
+
+
+        function menuItems(data) {
+            $.each(data,
+                function(i, v) {
+                    var li = $('<li></li>');
+                    li.append('<a href="@Url.Content(href)' + v.Slug + '">' + v.Heading + '</a>');
+                    $('.tutorial_menu_list').append(li);
+                });
+        }
+
+        $('#searchBoxId').keyup(function () {
+            var queryString = $(this).val();
+            var checkBoxVal = $('input[type="radio"]:checked').val();
+            if (checkBoxVal == "bangla") {
+                $.ajax({
+                    url: '@Url.Action("GetCssIndicesByBanglaQuery", "CssTutorial")',
+                    method: "GET",
+                    data: { queryString: queryString },
+                    dataType: "json",
+                    success: function(data) {
+                        $('.tutorial_menu_list').empty();
+                        menuItems(data);
+                    },
+                    error: function() {
+                        alert("Oops! There Is An Error");
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: '@Url.Action("GetCssIndicesByEnglishQuery", "CssTutorial")',
+                    method: "GET",
+                    data: { queryString: queryString },
+                    dataType: "json",
+                    success: function(data) {
+                        $('.tutorial_menu_list').empty();
+                        menuItems(data);
+                    },
+                    error: function() {
+                        alert("Oops! There Is An Error");
+                    }
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>

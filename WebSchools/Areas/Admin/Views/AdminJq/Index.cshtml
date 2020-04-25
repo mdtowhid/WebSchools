@@ -1,0 +1,83 @@
+﻿@using WebSchools.Models.Jquery
+
+
+@{
+    ViewBag.Title = "Jquery Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminJq.cshtml";
+    string editJqTutorialPage = "~/admin/adminJq/editJqTutorial/";
+    string editJqExamplPage = "~/admin/adminJq/editJqExample/";
+    string editJqIndex = "~/admin/adminJq/editJqIndex/";
+}
+
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+<br/>
+<div class="">
+    <select id="jqPageSlugId" class="form-control ad_center_dropdown">
+        <option value="0" selected="">Select JQ Page Name</option>
+        @foreach (JqueryIndex jqi in ViewBag.JqueryIndices)
+        {
+            <option id="@jqi.Id" value="@jqi.Slug">@jqi.Heading</option>
+        }
+    </select>
+</div>
+<div class="updation_wrapper">
+    <div id="updationDivId"></div>
+    <div id="jqExamplesUpdateId"></div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function() {
+            $("#jqPageSlugId").change(function() {
+                var id = $("#jqPageSlugId option:selected").attr("id");
+                var slug = $(this).val();
+                $('#updationDivId').empty();
+                $("#jqExamplesUpdateId").empty();
+                if (slug !== "jq_default") {
+                    $("#updationDivId").append("<span class='edit_index'>Edit JQ index: <a href='@Url.Content(editJqIndex)" + $("#jqPageSlugId option:selected").attr("id") + "'>" + $("#jqPageSlugId option:selected").text() + "</a></span> <br>");
+                }
+
+                $.ajax({
+                    url: '@Url.Action("GetJqTutorialsByPageSlug", "AdminJq")',
+                    method: "GET",
+                    data: { id : slug },
+                    dataType: "json",
+                    success: function(data) {
+                        $.each(data,
+                            function(i, v) {
+                                $("#updationDivId").append("<span class='edit_tutorials'>Edit JQ tutorial: <a href='@Url.Content(editJqTutorialPage)" +v.Id +"'>" +v.SubHeading +"</a></span> <br>");
+
+                            });
+
+                        $.ajax({
+                            url: '@Url.Action("GetJqExamplesByPageSlug", "AdminJq")',
+                            method: "GET",
+                            data: { id : slug },
+                            dataType: "json",
+                            success: function (data) {
+                                $("#jqExamplesUpdateId").append("<h4 class='example_indicatings'>Examples Based on <b>" + $("#jqPageSlugId option:selected").text() + "</b></h4>");
+                                $.each(data,
+                                    function (i, v) {
+
+                                        $("#jqExamplesUpdateId").append("<span class='edit_tutorials'>Edit JQ Example: <a href='@Url.Content(editJqExamplPage)" +
+                                            v.Id +
+                                            "'>" +
+                                            v.ExampleHeading +
+                                            "</a></span> <br>");
+                                    });
+                            },
+                            error: function() {
+                                alert("Oops! There Is An Error");
+                            }
+                        });
+                    },
+                    error: function() {
+                        alert("Oops! There Is An Error");
+                    }
+                });
+            });
+        });
+    </script>
+}

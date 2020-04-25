@@ -1,0 +1,92 @@
+﻿@using WebSchools.Models.Html
+@using WebSchools.Models.JavaScript
+
+@{
+    ViewBag.Title = "Js";
+    Layout = "~/Areas/JavaScript/Views/Shared/_JavaScript.cshtml";
+    JavaScriptIndex jsSinglePage = ViewBag.JsSinglePage;
+}
+
+<div class="section_wrapper fix">
+    <div class="articles_wrapper">
+        <div class="">
+            @Html.Raw(jsSinglePage.MainHeadingDescription)
+        </div>
+
+        @if (ViewBag.NoneJsTutorials != null)
+        {
+            <div class="alert alert-success">
+                <h2>@ViewBag.NoneJsTutorials</h2>
+            </div>
+        }
+        else
+        {
+            int i = 1;
+            foreach (JavaScriptTutorial jsTutorial in ViewBag.JsTutorials)
+            {
+
+                @*if (jsTutorial.AdvertisementActive)
+                    {
+                        <div class="@jsTutorial.AwesomeClass" style="padding: 10px; border: 2px solid red">
+                            <h4>Advertisement Section</h4>
+                        </div>
+                        <br/>
+                    }*@
+                if (jsTutorial.ActiveStatus)
+                {
+                        <div class="js_tutorial_box">
+                            <h2>@Html.Raw(jsTutorial.Heading)</h2>
+                            @Html.Raw(jsTutorial.Explanation)
+                        </div>
+
+                        foreach (JavaScriptExample jsExample in ViewBag.JsExamples)
+                        {
+                            <div class="single_page_wrapper">
+                            <div>
+                                <h3>@Html.Raw(jsExample.SubHeading)</h3>
+                                <p>@Html.Raw(jsExample.SubDescription)</p>
+                            </div>
+
+                            <section class="codeExampleWrapper fix">
+                                <div class="codeExampleHeading fix">
+                                    <div class="float_left">
+                                        <h3>উদাহরণ</h3>
+                                    </div>
+                                </div>
+                                <article class="codeExample fix">
+                                    <div class="float_left copy_codes" style="width: 95%">
+                                        @Html.Raw(jsExample.Example)
+                                    </div>
+                                    <div class="float_right">
+                                        <span class="copy_button" title="Copy the code"><i class="fa fa-copy"></i></span>
+                                    </div>
+                                    <a href="~/javaScript/javaScriptTutorial/tryIt/@jsExample.Id" class="try_it_button" target="_blank">Try it Yourself</a>
+                                </article>
+                            </section>
+
+                            @*<section class="heading_description fix">
+                                    <article>
+                                        <div>
+                                            <h3 style="font-size: 20px; font-weight: 100;">@Html.Raw(jsExample.Example)</h3>
+                                            <hr />
+                                            <p>@Html.Raw(jsExample.Description)</p>
+                                        </div>
+                                    </article>
+                                </section>*@
+
+                            <section class="js_example_wrapper">
+                                <div class="js_example_description">
+                                    <h3>উদাহরণ ব্যাখ্যা</h3>
+                                    <p class="explanation">@Html.Raw(jsExample.Description)</p>
+                                </div>
+                            </section>
+                            
+                            </div>
+                        }
+
+                }
+            }
+        }
+    </div>
+</div>
+

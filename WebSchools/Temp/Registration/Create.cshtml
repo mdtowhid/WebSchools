@@ -1,0 +1,186 @@
+﻿@using System.Web.Optimization
+@model WebSchools.Models.Registration
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong>@ViewBag.Message
+        </div>
+    }
+}
+
+@*<div class="container_fixed fix">
+    <div class="regFormStyle fix">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <h4>Create a new account</h4>
+                        <hr/>
+                    </div>
+                </div>
+                @Html.ValidationSummary(true)
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(model => model.UserName, new {placeholder = "User Name", @class = "form-control", @id = "userName"})
+                        @Html.ValidationMessageFor(model => model.UserName, "", new {@class = "velidationError", @id = "userNameError"})
+                        <div id="output"></div>
+                        <div id="availableUserNames"></div><a id="linkavailableUserNames" href="#"></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(model => model.Email, new {placeholder = "example@gmail.com", @class = "form-control", @id = "email"})
+                        @Html.ValidationMessageFor(model => model.Email, "", new {@class = "velidationError", @id = "emailError"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.PasswordFor(model => model.Password, new {placeholder = "New Password", @class = "form-control", @id = "password"})
+                        @Html.ValidationMessageFor(model => model.Password, "", new {@class = "velidationError", @id = "passwordError"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.PasswordFor(model => model.ConfirmPassword, new {placeholder = "Confirm Password", @class = "form-control", @id = "confirmPassword"})
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new {@class = "velidationError", @id = "confirmPasswordError"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12 checkboxes">
+                        <label> <input type="checkbox" class="checkbox" name="" id="asTeacher"/> As a Teacher</label>
+                        <label> <input type="checkbox" class="checkbox" id="asStudent"/> As a Student</label>
+                        <label> <input type="checkbox" class="checkbox" id="asContentWritter"/> As a Content Writter</label>
+                        <label> <input type="checkbox" class="checkbox" id="asVisitors"/> As a Visitors</label>
+                        <div id="checkedErrorCheckBox" style="color: red"></div>
+                    </div>
+                </div>
+
+
+                @Html.ValidationMessageFor(model => model.RegistrationStatus, "", new {@class = "velidationError", @id = "registrationStatus"})
+                <input type="text" name="RegistrationStatus" id="chekedRegistrationStatus" hidden style="height: 0;"/>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" id="submit" value="Sign Up" class="btn btn-success btn-sm"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="alert alert-@ViewBag.MessageType">
+                            @if (ViewBag.Message != null)
+                            {
+                                <div>@Html.Raw(ViewBag.Message)</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        }
+    </div>
+
+@if (ViewBag.Message != null)
+{
+<div class="alert alert-danger">
+    <strong>Error!</strong>@ViewBag.Message
+</div>
+}*
+@Scripts.Render("~/bundles/jqueryval")
+    
+@section Scripts{
+        
+        <script>
+            $(document).ready(function () {
+
+                var checkBoxes = $('input:checkbox.checkbox');
+                var checkedBoxeValue = function () {
+                    if ($('#asTeacher').is(':checked')) {
+                        return $('#asTeacher').attr('id');
+                    }
+                    if ($('#asStudent').is(':checked')) {
+                        return $('#asStudent').attr('id');
+                    }
+                    if ($('#asContentWritter').is(':checked')) {
+                        return $('#asContentWritter').attr('id');
+                    }
+                    if ($('#asVisitors').is(':checked')) {
+                        return $('#asVisitors').attr('id');
+                    }
+                }
+
+                checkBoxes.change(function () {
+                    if ($(this).is(':checked')) {
+                        checkBoxes.prop('disabled', true);
+                        $(this).prop('disabled', false);
+
+                        $('#chekedRegistrationStatus').attr('value', checkedBoxeValue());
+
+
+                        $('#checkedErrorCheckBox').html("");
+                    } else {
+                        checkBoxes.prop('disabled', false);
+                        $('#checkedErrorCheckBox').html("Please select at least one category of checkboxes");
+                    }
+                });
+
+                $('#userName').keyup(function () {
+                    var userName = $('#userName').val();
+                    var output = $('#output');
+                    var availableUserNames = $('#availableUserNames');
+                    var linkAvailableUserNames = $('#linkavailableUserNames');
+                    if (userName.length >= 4) {
+                        $.ajax({
+                            url: "@Url.Action("GetAvailableUserName", "Registration")",
+                            method: "POST",
+                            data: { UserName: userName },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.NameInUse) {
+                                    output.text(userName + " already in use. try another?").css({
+                                        'color': 'red'
+                                    });
+                                    availableUserNames.text("Available: ");
+
+                                    linkAvailableUserNames.text(data.UserName).click(function () {
+                                        output.text('');
+                                        availableUserNames.text('');
+                                        $('#userName').val($(this).text());
+                                        $(this).text('');
+                                    });
+                                } else {
+                                    output.text(data.UserName + " is available.").css({
+                                        'color': 'green'
+                                    });
+                                    availableUserNames.text("");
+                                    linkAvailableUserNames.text("");
+                                }
+                            },
+                            error: function (data) {
+                                alert("There is an error.");
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+    }

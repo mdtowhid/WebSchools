@@ -1,0 +1,49 @@
+﻿
+<div class="lang_box fix" id="sqlId">
+    <div class="float_left desc fix">
+        <div class="desc_top">
+            <div class="lang_icon">
+                <h1>এসকিউএল</h1>
+            </div>
+            <p>
+                এসকিউএল বা স্ট্রাকচার্ড কুয়েরি ভাষা হলো ডেটাবেজ ব্যবস্থাপনায় ব্যবহৃত একটি কুয়েরি ভাষা। 
+                এসকিউএল ব্যবহার করে ডাটাবেস তৈরি,ডাটাবেসের তথ্য হালনাগাদ,নতুন তথ্য সংযোজন,তথ্য বিয়োজন ইত্যাদি করা যায়।
+            </p>
+        </div>
+        <div class="desc_bottom">
+            <div class="lang_syntax_header">
+                <h4>এসকিউএল সিনটেক্স</h4>
+            </div>
+            <div class="tutorial_example ex_box">
+                <div class="sql_stx">
+                    <span class="sql">SELECT</span> * <span class="sql">FROM</span> <span class="sql_tbl_name"> DemoCustomers</span>
+                    <br />
+                    <br />
+
+
+                    <span class="sql_update">UPDATE</span><span class="sql_tbl_name"> DemoCustomers</span>
+                    <br />
+                    <span class="sql"> SET</span> CustomerName = <span class="sql_update_value">'Jhon'</span>
+                    <br />
+                    <span class="sql">WHERE</span> <span class="sql_condition_val"> Id </span>= 3
+
+                    <br />
+                    <br />
+                    <span class="sql">DELETE FROM</span> <span class="sql_tbl_name"> DemoCustomers</span>
+                </div>
+            </div>
+        </div>
+        <a href="~/sql/sqlTutorial/sql/" class="next_page">এসকিউএল শিখুন <span class="raquo">&raquo;</span></a>
+    </div>
+    <div class="float_right demo fix">
+        <div class="fix">
+            <h3>
+                কর্মচারী তথ্য দেখুন
+                DemoCustomers টেবিল থেকে এসকিউএল কোয়েরি ব্যবহার করে!
+            </h3>
+            <p><mark id="sqlQuery">SELECT * FROM DemoCustomers</mark></p>
+            <button id="sqlExBtnId" class="">কর্মীদের তথ্য দেখুন</button>
+            <div id="sqlQueryUpdationDivBoxId"></div>
+        </div>
+    </div>
+</div>

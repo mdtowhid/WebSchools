@@ -1,0 +1,63 @@
+﻿<add name="WebSchoolsDbContext" connectionString="Data Source=SQL2012.dbsqlserver.com,1288;Initial Catalog=webschoo_webschoolsDb;user id=webschoo_Towhid1232; password=Ro@2zj86" providerName="System.Data.SqlClient"/>
+
+//bool status = false;
+            //string message = "";
+
+            if (ModelState.IsValid)
+            {
+                //for suggesting available user name
+                registration.RememberMe = false;
+                registration.NameInUse = true;
+
+                //generating activation code
+                //registration.ActivationCode = Guid.NewGuid();
+
+                //password hashing
+                registration.Password = Crypto.Crypto.Hash(registration.Password);
+                registration.ConfirmPassword = Crypto.Crypto.Hash(registration.ConfirmPassword);
+
+                //initializing is email verified as false
+                registration.IsEmailVerified = false;
+
+
+                db.Registrations.Add(registration);
+
+
+                if (db.SaveChanges() > 0)
+                {
+                    ViewBag.Message = string.Format("Welcome {0} Your Information Is saved Successfully",
+                        registration.UserName);
+                    ViewBag.MessageType = "success";
+
+                    /*
+                    *Need to update articleWriter table to fetch writer info
+                    *so that when writer submit new article i can track everything
+                    */
+                    if (registration.RegistrationStatus == "asContentWritter")
+                    {
+                        ArticleWriter articleWriter = new ArticleWriter();
+                        var result = db.Registrations.FirstOrDefault(x => x.Id == registration.Id);
+
+                        if (result != null)
+                        {
+                            articleWriter.UserName = registration.UserName;
+                            articleWriter.ArticleCounter = 0;
+                            articleWriter.NumberOfArticleDone = 0;
+
+                            db.ArticleWriters.Add(articleWriter);
+                            db.SaveChanges();
+                        }
+                    }
+
+
+                    //SendVerificationLinkEmail(registration.Email, registration.ActivationCode.ToString());
+                    //message = "Registration successfully done. Account activation link " +
+                    //    " has been sent to your email id:" + registration.Email;
+                    //status = true;
+                    //ViewBag.Message = message;
+                    //ViewBag.Status = status;
+
+                }
+
+            }
+            return RedirectToAction("Index", "Index", new { area = "" });

@@ -1,0 +1,45 @@
+﻿@using WebSchools.Models.BlogVm
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>@ViewBag.Title WebSchools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</head>
+<body class="blog_body">
+<div class="container_wrapper blog_top_wrapper">
+    <div class="container_fixed">
+        <ul class="blog_top_menu float_left">
+            <li><a href="~/index/index/">WS Home</a></li>
+            <li><a href="~/blogs/home/">Blog Home</a></li>
+            @foreach (BlogCategory blogCategory in ViewBag.BlogCategories)
+            {
+                <li><a href="~/blogs/collections/@blogCategory.Id/">@blogCategory.BlogCategoryName</a></li>
+            }
+        </ul>
+        <div class="float_right blog_toggle_btn hide_lg_devices" style="cursor: pointer;">
+            <h2 style="color: white;margin: 0">&equiv;</h2>
+        </div> 
+    </div>
+</div>
+<div class="">
+    @RenderBody()
+</div>
+<script>
+    $(document).ready(function() {
+        $('.blog_toggle_btn').click(function() {
+            $('.blog_top_menu li:not(:first-child)').toggleClass('active');
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@using WebSchools.Models.Html
+
+
+@{
+    ViewBag.Title = "Admin Default";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    HtmlIndex i = ViewBag.X;
+}
+
+<h1>Web School Admin Index page</h1>
+
+
+<br />
+<br />
+
+<a href="~/admin/admin/WebSchoolsEditor/@i.Slug">@i.Slug</a>
+
+<br />
+<br />
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('ul#sortableUl').sortable({
+                items: "li:not(:nth-child(1))",
+                placeholder: "ui-state-highlight",
+                update: function () {
+                    var ids = $('ul#sortableUl').sortable("serialize");
+                    var url = "/Admin/Admin/ReorderHtmlIndices";
+
+                    $.post(url, ids, function (data) {
+                    });
+                }
+            });
+
+            $('ul#html_tutorial_menu').sortable({
+                //items: "li:not(:nth-child(1))",
+                placeholder: "ui-state-highlight",
+                update: function () {
+                    var ids = $('ul#tutorials').sortable("serialize");
+                    var url = "/Admin/Admin/ReorderPages";
+
+                    $.post(url, ids, function (data) {
+                    });
+                }
+            });
+
+        });
+    </script>
+}

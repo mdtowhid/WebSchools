@@ -1,0 +1,74 @@
+﻿
+@model WebSchools.Models.BlogVm.BlogContent
+
+@{
+    ViewBag.Title = "Edit " + Model.BlogHeading;
+    Layout = "~/Areas/blog/views/shared/_blogger.cshtml";
+}
+<div class="blg_right">
+
+    
+    @Html.Partial("~/Areas/blog/views/shared/_AdminTopMenu.cshtml", null)
+
+
+    @using (Html.BeginForm("Edit", "BlogContents", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.BlogHeading, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BlogHeading, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BlogHeading, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Blog Image</label>
+                <div class="col-md-10">
+                    <input type="file" name="file" id="ImageUrl" required class="form-control fileUpBoxStyle" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BlogDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.BlogDesc, new { @class = "form-control", @placeholder = "Blog descriptions...", @cols = 10, @rows = 7 })
+                    @Html.ValidationMessageFor(model => model.BlogDesc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <input type="datetime" name="Date" value="@System.DateTime.Now" hidden />
+            <input type="text" name="ActiveStatus" value="false" hidden />
+            <input type="text" name="BloggerId" value="000" hidden />
+
+            <input type="text" name="PostedBy" value="tt" hidden />
+            <input type="text" name="Slug" value="ss" hidden />
+            <input type="text" name="Sort" value="000" hidden />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BlogCategoryId, "BlogCategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("BlogCategoryId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BlogCategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Home")
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

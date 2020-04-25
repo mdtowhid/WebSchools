@@ -1,0 +1,237 @@
+﻿@model WebSchools.Models.Registration
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_D.cshtml";
+}
+<style>
+    body{
+        background: #fcfcfc;
+    }
+    #navMenuId{
+        display: none;
+    }
+	.ws_greating{
+		display: none;
+	}
+</style>
+
+
+@if (ViewBag.Success != null)
+{
+    <mark>@ViewBag.Success</mark>
+}
+else if (ViewBag.Error != null)
+{
+    <mark>@ViewBag.Error</mark>
+}
+
+<div class="ws_forms fix">
+    <div class="ws_forms_left float_left fix">
+        <ul>
+            <li><h3>Sign Up</h3></li>
+            <li><h3>Log In</h3></li>
+        </ul>
+    </div>
+    @using (Html.BeginForm("SignUp", "Account", FormMethod.Post, new {enctype = "multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal ws_form fix active" id="signUpForm">
+
+            <div class="ws_form_header">
+                <h2>Personal Information</h2>
+                <p>Please enter your information so that we can build your accounts.</p>
+            </div>
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            <div class="form-group">
+                
+                <div class="col-md-12">
+                    <label for="UserName" class="spanPlacehoder">User Name</label>
+                    @Html.EditorFor(model => model.UserName, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.UserName, "", new {@class = "text-danger"})
+                    <div id="divResult"></div>
+                    <span class="spanAvailableUserName"></span>
+                    <a id="linkAvailableUserName" href="#"></a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="Email" class="spanPlacehoder">Email</label>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="Password" class="spanPlacehoder">Password</label>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="ConfirmPassword" class="spanPlacehoder">Confirm Password</label>
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <select name="RegistrationStatus" class="form-control">
+                        <option value="-1">Select Your Contributor</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="student">Student</option>
+                        <option value="contentWritter">ContentWritter</option>
+                        <option value="blogger">Blogger</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="file" name="file" id="ImageUrl" class="form-control" required/>
+                </div>
+            </div>
+            <input type="text" value="true" name="NameInUse" hidden/>
+            <input type="text" value="true" name="RememberMe" hidden/>
+            <input type="text" value="false" name="IsEmailVerified" hidden/>
+
+
+            <input type="datetime" name="Date" value="@System.DateTime.Now" hidden/>
+            <input type="text" name="ActiveStatus" value="false" hidden/>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Sign Up" class="btn btn-default"/>
+                </div>
+            </div>
+        </div>
+    }
+    
+    
+    
+    @using (Html.BeginForm("LogIn", "Account", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal ws_form fix" id="loginForm">
+            <div class="ws_form_header">
+                <h2>Log In</h2>
+                
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @*<label for="Email" class="spanPlacehoder">Email</label>*@
+                    <input type="text" name="Email" placeholder="Email" class="form-control text-box" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @*<label for="Password" class="spanPlacehoder">Password</label>*@
+                    <input type="password" name="Password" placeholder="Password" class="form-control text-box" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <select name="RegistrationStatus" class="form-control">
+                        <option value="-1">Select Your Contributor</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="student">Student</option>
+                        <option value="contentWritter">ContentWritter</option>
+                        <option value="blogger">Blogger</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Login" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function() {
+
+            var divResult = $('#divResult');
+            var spanAvailableUserName = $('.spanAvailableUserName');
+            var linkAvailableUserName = $('#linkAvailableUserName');
+            $('#UserName').keyup(function() {
+                var userName = $(this).val();
+
+                if (userName.length >= 3) {
+                    $.ajax({
+                        url: '@Url.Action("GetAvailableUserName", "Account")',
+                        method: 'post',
+                        data: { userName: userName },
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.NameInUse) {
+                                divResult.text(userName + ' already exist. Try another ? ').css('color', 'red');
+                                spanAvailableUserName.text('Available: ');
+                                linkAvailableUserName.text(data.UserName);
+                            } else {
+                                divResult.text(data.UserName + ' available.').css('color', 'green');
+                                spanAvailableUserName.text('');
+                                linkAvailableUserName.text('');
+                            }
+                        },
+                        error: function(err) {
+                            alert(err);
+                        }
+                    });
+                }
+            });
+            linkAvailableUserName.click(function() {
+                $('#UserName').val($(this).text());
+                divResult.text('');
+                spanAvailableUserName.text('');
+                linkAvailableUserName.text('');
+            });
+
+
+            $('.text-box').focus(function () {
+                var prevElementSibling = $(this).prev();
+                prevElementSibling.addClass('focus');
+            }).blur(function() {
+                if ($(this).val() === '') {
+                    var prevElementSibling = $(this).prev();
+                    prevElementSibling.removeClass('focus');
+                }
+            });
+
+            $('.ws_forms_left ul li').click(function () {
+                var text = $(this).text();
+                var form = $('.ws_form');
+                var sign = $('#signUpForm');
+                var log = $('#loginForm');
+                if (text === "Sign Up") {
+                    form.addClass('active');
+                    log.removeClass('active');
+                } else if (text === "Log In"){
+                    form.addClass('active');
+                    sign.removeClass('active');
+                }
+            });
+
+            //$('.spanPlacehoder').click(function() {
+            //    $(this).addClass('focus');
+            //}).blur(function() {
+            //    $(this).removeClass('focus');
+            //});
+        });
+    </script>
+    }

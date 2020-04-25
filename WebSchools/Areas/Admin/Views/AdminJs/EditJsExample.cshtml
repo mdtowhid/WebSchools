@@ -1,0 +1,109 @@
+﻿@using WebSchools.Models.JavaScript
+@model WebSchools.Models.JavaScript.JavaScriptExample
+
+@{
+    ViewBag.Title = "EditJsExample";
+    Layout = "~/Areas/Admin/Views/Shared/_adminJs.cshtml";
+}
+@Html.Partial("~/Views/Shared/_admin_top_header.cshtml", null)
+<div class="form_head">
+    <h2>Edit Js Example</h2>
+    <p><b>Current Slug : </b> <mark>@Model.Slug</mark></p>
+</div>
+<div class="well-sm form-group status">
+    @if (ViewBag.Error != null)
+    {
+        <div class="text-danger">@Html.Raw(ViewBag.Error)</div>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <div class="text-success">@Html.Raw(ViewBag.Success)</div>
+    }
+
+    @*<h3>Slug:: @Model.Slug</h3>*@
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input type="text" value="@Model.Id" name="Id" hidden />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            <select id="slug" name="Slug" class="form-control">
+                <option value="none">Select slug</option>
+                @foreach (JavaScriptIndex ji in ViewBag.JsIndices)
+                {
+                    <option id="@ji.Id" value="@ji.Slug">@ji.Slug</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <input type="text" name="JavaScriptIndexId" id="javaScriptIndexId" value="" hidden />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubHeading, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.SubHeading, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SubHeading, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.SubDescription, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SubDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Example, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.Example, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Example, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <input type="text" name="ActiveStatus" value="false" hidden />
+    <input type="text" name="AdminId" value="@Session["JsAdminId"]" hidden />
+    <input type="text" name="Date" value="@System.DateTime.Now" hidden />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#slug').change(function () {
+                var jsIndexId = $(this).children(":selected").attr('id');
+                $('#javaScriptIndexId').attr('value', jsIndexId);
+            });
+        });
+    </script>
+}
